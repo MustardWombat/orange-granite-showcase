@@ -6,16 +6,14 @@ import { Dialog, DialogContent, DialogOverlay } from '@/components/ui/dialog';
 const orgsData = [
   {
     id: "org1",
-    icon: "🤖",
     title: "Precision Agriculture Robotics Club",
     description: "Perception and Navigation team member collaborating to create autonomously controlled robots using Python, C++, and microcontrollers.",
-    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
+    image: "/lovable-uploads/b9506242-ade4-45c3-8b75-dc1ba3d9de63.png",
     content: "As a member of the Perception and Navigation team within the Precision Agriculture Robotics Club, I've been instrumental in developing systems that allow robots to sense their environment and navigate autonomously through agricultural fields.\n\nOur team focuses on integrating computer vision with sensor data to create reliable navigation systems that can operate in the challenging and variable conditions of agricultural environments. Using technologies like LiDAR, RGB-D cameras, and various environmental sensors, we've developed algorithms that enable robots to detect crop rows, identify obstacles, and make real-time navigation decisions.\n\nThrough this club, I've gained hands-on experience implementing cutting-edge robotics concepts using Python and C++ while working with platforms like ROS (Robot Operating System). This practical experience has deepened my understanding of sensor fusion, computer vision, and autonomous navigation techniques that are essential in modern robotics.",
     tags: ["Robotics", "Python", "Computer Vision", "ROS"]
   },
   {
     id: "org2",
-    icon: "🛠️",
     title: "FRC Robotics Team 815",
     description: "President and Lead Programmer directing a team of 20+ members, supervising project timelines, and ensuring team cohesion for competition-ready robots.",
     image: "/lovable-uploads/0d606ddf-ff01-45db-883c-985996b10282.png",
@@ -24,10 +22,9 @@ const orgsData = [
   },
   {
     id: "org3",
-    icon: "💼",
     title: "Work Experience",
     description: "Two years at Tim Hortons as Cashier/Closer, managing high-volume orders with accuracy and efficiency, increasing customer satisfaction by over 20%.",
-    image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81",
+    image: "/lovable-uploads/b9506242-ade4-45c3-8b75-dc1ba3d9de63.png",
     content: "During my two years at Tim Hortons, I developed valuable skills in customer service, time management, and team collaboration that have proven transferable to my technical pursuits.\n\nAs a Cashier and Closer, I managed high-volume customer interactions during peak hours while maintaining accuracy and efficiency in order processing. This fast-paced environment taught me to prioritize tasks effectively, communicate clearly under pressure, and adapt quickly to changing conditions—skills that have proven invaluable in technical project management.\n\nMy responsibilities included reconciling daily transactions, managing inventory, and ensuring store cleanliness and readiness for the next business day. This role required attention to detail and systematic thinking, traits that translate directly to debugging code and building reliable systems.\n\nPerhaps most significantly, I implemented several process improvements that streamlined closing procedures and reduced closing time by approximately 30 minutes per shift. This initiative demonstrated my ability to analyze workflows, identify inefficiencies, and implement practical solutions—an approach I now apply to technical problem solving.",
     tags: ["Customer Service", "Process Improvement", "Team Coordination"]
   }
@@ -76,12 +73,11 @@ const Organizations = () => {
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
-                    target.src = "https://placehold.co/800x600/1A1A1A/FF6B00?text=Organization";
+                    target.src = "/lovable-uploads/b9506242-ade4-45c3-8b75-dc1ba3d9de63.png";
                   }}
                 />
               </div>
               <div className="p-6 flex flex-col flex-grow">
-                <div className="text-4xl mb-4">{org.icon}</div>
                 <h3 className="text-xl font-bold mb-3 group-hover:text-orange transition-colors">{org.title}</h3>
                 <p className="text-gray-400 mb-4 flex-grow">{org.description}</p>
                 
@@ -113,7 +109,6 @@ const Organizations = () => {
         <DialogContent className="max-w-5xl w-[90vw] h-[90vh] p-0 bg-granite border border-gray-700 overflow-y-auto">
           <div className="sticky top-0 bg-granite z-10 flex justify-between items-center p-6 border-b border-gray-700">
             <div className="flex items-center gap-3">
-              <span className="text-3xl">{currentOrg.icon}</span>
               <h2 className="text-2xl font-bold">{currentOrg.title}</h2>
             </div>
             <button onClick={closeModal} className="text-gray-400 hover:text-white">
@@ -160,3 +155,4 @@ const Organizations = () => {
 };
 
 export default Organizations;
+
