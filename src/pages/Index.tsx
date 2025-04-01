@@ -2,21 +2,19 @@
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
-import AnimatedBar from '@/components/AnimatedBar';
+import TechBar from '@/components/TechBar';
 import Projects from '@/components/Projects';
 import Skills from '@/components/Skills';
 import Education from '@/components/Education';
 import Organizations from '@/components/Organizations';
 import Github from '@/components/Github';
-import Blog from '@/components/Blog';
+import Experience from '@/components/Experience';
 import Contact from '@/components/Contact';
-import CTASection from '@/components/CTASection';
 import Footer from '@/components/Footer';
-import EasterEggs from '@/components/EasterEggs';
 
 const Index = () => {
   useEffect(() => {
-    // Set up intersection observer for slide animations
+    // Intersection observer for animations
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -29,45 +27,34 @@ const Index = () => {
       { threshold: 0.1 }
     );
 
-    const slides = document.querySelectorAll('.slide');
-    slides.forEach((slide) => {
-      observer.observe(slide);
+    const sections = document.querySelectorAll('.section-animate');
+    sections.forEach((section) => {
+      observer.observe(section);
     });
 
     return () => {
-      slides.forEach((slide) => {
-        observer.unobserve(slide);
+      sections.forEach((section) => {
+        observer.unobserve(section);
       });
     };
   }, []);
 
   return (
-    <main className="bg-[#121212] text-white">
+    <main className="bg-[#121212] text-white overflow-x-hidden">
+      <div className="fixed w-full h-full top-0 left-0 bg-[url('/src/assets/grid-pattern.svg')] opacity-5 pointer-events-none z-0"></div>
       <Header />
       <Hero />
-      <AnimatedBar isThick={true} />
-      <Projects />
-      <AnimatedBar />
-      <Skills />
-      <AnimatedBar />
-      <CTASection />
-      <AnimatedBar />
-      <Education />
-      <AnimatedBar />
-      <Organizations />
-      <AnimatedBar />
-      <Github />
-      <AnimatedBar />
-      <Blog />
-      <AnimatedBar />
-      <Contact />
-      <Footer />
-      <EasterEggs />
-      
-      {/* This is a hidden element that reveals itself with the konami code */}
-      <div id="konami-code-hint" className="fixed bottom-2 right-2 text-xs text-gray-600 opacity-50">
-        Hint: Try the Konami code ↑↑↓↓←→←→ba
+      <TechBar />
+      <div className="container mx-auto px-4 z-10 relative">
+        <Projects />
+        <Skills />
+        <Experience />
+        <Education />
+        <Organizations />
+        <Github />
+        <Contact />
       </div>
+      <Footer />
     </main>
   );
 };

@@ -1,5 +1,5 @@
 
-import { useState, useEffect, useRef } from 'react';
+import { GraduationCap, Calendar } from 'lucide-react';
 
 const educationData = [
   {
@@ -19,71 +19,50 @@ const educationData = [
 ];
 
 const Education = () => {
-  const [items, setItems] = useState<HTMLElement[]>([]);
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.1 }
-    );
-    
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-    
-    const itemElements = document.querySelectorAll('.education-item');
-    setItems(Array.from(itemElements) as HTMLElement[]);
-    
-    items.forEach((item, index) => {
-      setTimeout(() => {
-        item.classList.add('opacity-100', 'translate-y-0');
-      }, 300 * (index + 1));
-    });
-    
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, [items.length]);
-
   return (
-    <section id="education" className="py-20 relative slide" ref={sectionRef}>
-      <div className="container">
-        <h2 className="section-title">Education</h2>
+    <section id="education" className="py-20 section-animate">
+      <div className="section-heading mb-16">
+        <h2 className="text-3xl font-bold mb-4 flex items-center gap-2">
+          <GraduationCap className="text-orange" />
+          Education
+        </h2>
+        <div className="h-1 w-20 bg-orange"></div>
+      </div>
+      
+      <div className="relative">
+        <div className="hidden md:block absolute left-1/2 top-0 h-full w-px bg-orange/30 transform -translate-x-1/2"></div>
         
-        <div className="mt-12 relative">
-          <div className="absolute left-0 md:left-1/2 h-full w-1 bg-orange/20 transform md:translate-x-[-0.5px]"></div>
-          
-          {educationData.map((item, index) => (
-            <div 
-              key={item.id}
-              className={`education-item relative mb-12 md:w-1/2 ${
-                index % 2 === 0 ? 'md:pr-12 md:ml-auto' : 'md:pl-12'
-              } opacity-0 translate-y-8 transition-all duration-500 ease-out`}
-              style={{ transitionDelay: `${index * 300}ms` }}
-            >
-              <div className="absolute left-[-8px] md:left-auto md:top-0 top-0 w-4 h-4 rounded-full bg-orange z-10 md:translate-x-[-8px]"></div>
-              
-              <div className="bg-granite p-6 rounded-lg border border-white/10 hover:border-orange/30 transition-all duration-300 hover:shadow-[0_0_15px_rgba(255,107,0,0.15)]">
-                <span className="text-orange text-sm">{item.period}</span>
-                <h3 className="text-xl font-bold mt-2">{item.school}</h3>
-                <p className="text-gray-300 mt-1">{item.degree}</p>
-                <ul className="mt-2">
-                  {item.details.map((detail, idx) => (
-                    <li key={idx} className="text-gray-400">{detail}</li>
-                  ))}
-                </ul>
+        {educationData.map((item, index) => (
+          <div 
+            key={item.id}
+            className={`mb-16 last:mb-0 md:w-1/2 relative ${
+              index % 2 === 0 ? 'md:pr-12 md:ml-auto' : 'md:pl-12'
+            }`}
+          >
+            <div className="hidden md:block absolute top-6 -left-2 w-4 h-4 rounded-full bg-orange z-10"></div>
+            {index % 2 === 0 && <div className="hidden md:block absolute top-6 left-[-10px] w-4 h-4 rounded-full bg-orange z-10"></div>}
+            {index % 2 === 1 && <div className="hidden md:block absolute top-6 right-[-10px] w-4 h-4 rounded-full bg-orange z-10"></div>}
+            
+            <div className="bg-granite border border-gray-700 rounded-lg p-6 hover:border-orange/50 transition-all duration-300">
+              <div className="flex items-center gap-2 text-orange mb-3">
+                <Calendar className="w-4 h-4" />
+                <span>{item.period}</span>
               </div>
+              
+              <h3 className="text-xl font-bold mb-1">{item.school}</h3>
+              <p className="text-gray-300 mb-4">{item.degree}</p>
+              
+              <ul className="space-y-1">
+                {item.details.map((detail, idx) => (
+                  <li key={idx} className="text-gray-400 flex items-center gap-2">
+                    <div className="h-1.5 w-1.5 rounded-full bg-orange"></div>
+                    {detail}
+                  </li>
+                ))}
+              </ul>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </section>
   );

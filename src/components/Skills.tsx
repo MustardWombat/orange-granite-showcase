@@ -1,82 +1,77 @@
 
-import { useRef, useEffect } from 'react';
+import { useState } from 'react';
+import { Code, Server, Cpu, Wrench, Award } from 'lucide-react';
 
-const skillsCategories = [
+const skillCategories = [
   {
+    icon: <Code className="w-6 h-6 text-orange" />,
     title: "Programming",
     skills: ["Python", "C++", "Java", "JavaScript", "Swift", "HTML/CSS", "RO2"]
   },
   {
+    icon: <Cpu className="w-6 h-6 text-orange" />,
     title: "Hardware",
     skills: ["Arduino", "Raspberry Pi", "Robotics Systems", "Microcontrollers", "Sensor Integration"]
   },
   {
+    icon: <Server className="w-6 h-6 text-orange" />,
     title: "Tools & Platforms",
     skills: ["VS Code", "AWS Tools", "Microsoft Excel", "Git/GitHub"]
   },
   {
+    icon: <Award className="w-6 h-6 text-orange" />,
     title: "Certifications",
     skills: ["CS50X from Harvard", "AWS Cloud Practitioner Essentials", "Microsoft Excel Advanced"]
   }
 ];
 
 const Skills = () => {
-  const sectionRef = useRef<HTMLElement>(null);
-  
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.1 }
-    );
-    
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-    
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
+  const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
 
   return (
-    <section id="skills" className="py-20 relative slide" ref={sectionRef}>
-      <div className="container">
-        <h2 className="section-title">Technical Skills</h2>
-        
-        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {skillsCategories.map((category, categoryIndex) => (
-            <div 
-              key={categoryIndex} 
-              className="skill-category"
-              style={{ animationDelay: `${categoryIndex * 150}ms` }}
-            >
-              <h3 className="text-xl font-bold mb-4 text-orange">
-                {category.title}
-              </h3>
-              <ul className="skill-list">
-                {category.skills.map((skill, skillIndex) => (
-                  <li 
-                    key={skillIndex}
-                    className="opacity-0 translate-y-2" 
-                    style={{ 
-                      animation: 'slide-up 0.3s ease-out forwards',
-                      animationDelay: `${(categoryIndex * 100) + (skillIndex * 100)}ms` 
-                    }}
-                  >
-                    {skill}
-                  </li>
-                ))}
-              </ul>
+    <section id="skills" className="py-20 section-animate">
+      <div className="section-heading mb-16">
+        <h2 className="text-3xl font-bold mb-4 flex items-center gap-2">
+          <Wrench className="text-orange" />
+          Technical Skills
+        </h2>
+        <div className="h-1 w-20 bg-orange"></div>
+      </div>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {skillCategories.map((category, index) => (
+          <div 
+            key={index} 
+            className="bg-granite border border-gray-700 rounded-lg p-6 hover:border-orange/50 transition-all duration-300"
+          >
+            <div className="flex items-center gap-3 mb-4">
+              {category.icon}
+              <h3 className="text-xl font-bold">{category.title}</h3>
             </div>
-          ))}
-        </div>
+            
+            <ul className="space-y-3">
+              {category.skills.map((skill, idx) => (
+                <li 
+                  key={idx}
+                  className="skill-item"
+                  onMouseEnter={() => setHoveredSkill(skill)}
+                  onMouseLeave={() => setHoveredSkill(null)}
+                >
+                  <div className="flex items-center gap-2">
+                    <div className="h-2 w-2 rounded-full bg-orange"></div>
+                    <span className={hoveredSkill === skill ? "text-orange" : ""}>{skill}</span>
+                  </div>
+                  <div className="skill-bar-bg">
+                    <div 
+                      className="skill-bar" 
+                      style={{width: `${Math.random() * 40 + 60}%`}}
+                    ></div>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
     </section>
   );

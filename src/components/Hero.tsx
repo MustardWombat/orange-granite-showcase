@@ -1,70 +1,104 @@
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useState } from 'react';
+import { ArrowRight, Github, Linkedin, Mail } from 'lucide-react';
 
 const Hero = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const [text, setText] = useState('');
+  const [showCursor, setShowCursor] = useState(true);
+  const fullText = "Computer Science Student";
   
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.1 }
-    );
+    let index = 0;
+    let timer: NodeJS.Timeout;
     
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-    
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+    const typeText = () => {
+      if (index < fullText.length) {
+        setText(fullText.substring(0, index + 1));
+        index++;
+        timer = setTimeout(typeText, 100);
       }
     };
+    
+    typeText();
+    
+    const cursorTimer = setInterval(() => {
+      setShowCursor(prev => !prev);
+    }, 500);
+    
+    return () => {
+      clearTimeout(timer);
+      clearInterval(cursorTimer);
+    };
   }, []);
-
+  
   return (
-    <section className="min-h-screen pt-28 pb-16 relative slide" id="home" ref={sectionRef}>
-      <div className="absolute inset-0 bg-[url('/src/assets/grid-pattern.svg')] opacity-5"></div>
-      <div className="container">
+    <section className="min-h-screen pt-28 relative z-10 flex items-center section-animate" id="home">
+      <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-7 z-10">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white animate-fade-in">
-              James <span className="text-orange">Williams</span>
-            </h1>
-            <div className="h-1 w-24 bg-orange mb-6 animate-scale-in"></div>
-            <p className="text-lg text-gray-300 mb-4 animate-fade-in" style={{ animationDelay: '200ms' }}>
-              My whole life I have been fascinated with the idea of engineering and how the world around us was built.
-            </p>
-            <p className="text-lg text-gray-300 mb-4 animate-fade-in" style={{ animationDelay: '400ms' }}>
-              Through perseverance, passion, and the support of my friends and family, I have been able to pursue my dreams of creating a better tomorrow.
-            </p>
-            <p className="text-lg text-gray-300 mb-6 animate-fade-in" style={{ animationDelay: '600ms' }}>
-              I'd love to show you around, so below is everything there is to know about me, including my past or current projects, particular skills I'm proud of, and even my blog!
-            </p>
-            
-            <div className="mt-8 flex gap-4 animate-fade-in" style={{ animationDelay: '800ms' }}>
-              <a href="#projects" className="bg-orange hover:bg-orange-light text-white font-medium py-3 px-6 rounded-md transition-colors duration-300 hover:scale-105 transform">
-                View Projects
-              </a>
-              <a href="#contact" className="bg-transparent hover:bg-white/10 text-white border border-white/30 font-medium py-3 px-6 rounded-md transition-colors duration-300 hover:scale-105 transform">
-                Contact Me
-              </a>
+          <div className="lg:col-span-7">
+            <div className="flex flex-col items-start">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
+                  Hi, I'm
+                </span> 
+                <span className="block text-orange mt-2">James Williams</span>
+              </h1>
+              
+              <div className="typewriter h-8 mb-6 flex items-center">
+                <span className="text-xl font-mono">&gt; {text}</span>
+                <span className={`h-5 w-2 bg-orange ml-1 ${showCursor ? 'opacity-100' : 'opacity-0'}`}></span>
+              </div>
+              
+              <p className="text-xl text-gray-300 mb-8 max-w-2xl">
+                Passionate about finding solutions to complex problems through innovative design and development. 
+                <span className="block mt-2">
+                  I merge my skills in robotics, software development and system architecture to build technology that matters.
+                </span>
+              </p>
+              
+              <div className="flex gap-5 mb-8">
+                <a href="#" className="social-icon-link" aria-label="GitHub">
+                  <Github className="w-6 h-6" />
+                </a>
+                <a href="#" className="social-icon-link" aria-label="LinkedIn">
+                  <Linkedin className="w-6 h-6" />
+                </a>
+                <a href="mailto:will4379@msu.edu" className="social-icon-link" aria-label="Email">
+                  <Mail className="w-6 h-6" />
+                </a>
+              </div>
+              
+              <div className="flex flex-wrap gap-4">
+                <a href="#projects" className="tech-btn primary flex items-center gap-2">
+                  <span>Explore Projects</span>
+                  <ArrowRight size={16} />
+                </a>
+                <a href="#contact" className="tech-btn secondary">
+                  <span>Contact Me</span>
+                </a>
+              </div>
             </div>
           </div>
           
-          <div className="lg:col-span-5 flex justify-center z-10 animate-scale-in" style={{ animationDelay: '300ms' }}>
-            <div className="w-full max-w-md aspect-square bg-gradient-to-tr from-orange-dark via-orange to-orange-light p-1 rounded-full">
-              <div className="w-full h-full bg-darkgray rounded-full flex items-center justify-center">
+          <div className="lg:col-span-5 flex justify-center">
+            <div className="relative w-full max-w-sm aspect-square">
+              <div className="absolute inset-0 bg-gradient-to-tr from-orange-dark via-orange to-orange-light rounded-full blur-xl opacity-25 animate-pulse"></div>
+              <div className="absolute inset-2 bg-gradient-to-tr from-orange-dark via-orange to-orange-light rounded-full"></div>
+              <div className="absolute inset-3 bg-darkgray rounded-full flex items-center justify-center">
                 <img 
                   src="https://images.unsplash.com/photo-1518770660439-4636190af475" 
                   alt="James Williams" 
-                  className="w-[95%] h-[95%] object-cover rounded-full hover:scale-105 transition-transform duration-500"
+                  className="w-[92%] h-[92%] object-cover rounded-full hover:scale-105 transition-transform duration-500"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.src = "https://placehold.co/400x400/FF6B00/FFFFFF?text=JW";
+                  }}
                 />
               </div>
+              
+              {/* Tech decorations */}
+              <div className="absolute -bottom-6 -right-6 w-24 h-24 border-2 border-dashed border-orange/50 rounded-full"></div>
+              <div className="absolute -top-6 -left-6 w-16 h-16 border border-orange/30 rounded-full"></div>
             </div>
           </div>
         </div>
