@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Github as GithubIcon, ExternalLink, Star, GitFork, Code, Terminal } from 'lucide-react';
 import { Skeleton } from './ui/skeleton';
-import { fetchGithubContributions } from '@/utils/githubUtils';
+import { fetchGithubContributions, GithubContribution } from '@/utils/githubUtils';
 
 interface GithubCommit {
   sha: string;
