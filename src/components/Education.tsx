@@ -7,7 +7,8 @@ const educationData = [
     school: "Michigan State University",
     degree: "Bachelor of Science, Computer Science",
     details: ["GPA: 3.9", "Dean's List"],
-    period: "August 2024 - May 2028"
+    period: "August 2024 - May 2028",
+    logo: "/lovable-uploads/6d91f44f-8276-4346-a003-d6c07ec0039e.png"
   },
   {
     id: 2,
@@ -49,8 +50,21 @@ const Education = () => {
                 <span>{item.period}</span>
               </div>
               
-              <h3 className="text-xl font-bold mb-1">{item.school}</h3>
-              <p className="text-gray-300 mb-4">{item.degree}</p>
+              <div className="flex items-center gap-4 mb-4">
+                {item.logo && (
+                  <div className="w-20 h-20 bg-white rounded-lg overflow-hidden flex items-center justify-center p-2">
+                    <img 
+                      src={item.logo} 
+                      alt={`${item.school} logo`} 
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                )}
+                <div>
+                  <h3 className="text-xl font-bold">{item.school}</h3>
+                  <p className="text-gray-300">{item.degree}</p>
+                </div>
+              </div>
               
               <ul className="space-y-1">
                 {item.details.map((detail, idx) => (
