@@ -5,7 +5,7 @@ import { ArrowRight, Github, Linkedin, Mail } from 'lucide-react';
 const Hero = () => {
   const [text, setText] = useState('');
   const [showCursor, setShowCursor] = useState(true);
-  const fullText = "Computer Science Student";
+  const fullText = "Computer Engineering Student";
   
   useEffect(() => {
     let index = 0;
@@ -97,8 +97,8 @@ const Hero = () => {
               </div>
               
               {/* Tech decorations */}
-              <div className="absolute -bottom-6 -right-6 w-24 h-24 border-2 border-dashed border-orange/50 rounded-full"></div>
-              <div className="absolute -top-6 -left-6 w-16 h-16 border border-orange/30 rounded-full"></div>
+              <div className="absolute -bottom-6 -right-6 w-24 h-24 border-2 border-dashed border-orange/50 rounded-full animate-[spin_15s_linear_infinite]"></div>
+              <div className="absolute -top-6 -left-6 w-16 h-16 border border-orange/30 rounded-full animate-[spin_12s_linear_infinite_reverse]"></div>
             </div>
           </div>
         </div>
