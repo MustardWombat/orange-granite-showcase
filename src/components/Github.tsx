@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { Github as GithubIcon, ExternalLink, Star, GitFork, Code, Terminal } from 'lucide-react';
 import { Skeleton } from './ui/skeleton';
@@ -35,7 +34,6 @@ const Github = () => {
         setLoading(true);
         setError(null);
         
-        // Fetch user's repositories
         const reposResponse = await fetch('https://api.github.com/users/MustardWombat/repos?sort=updated&per_page=3');
         
         if (!reposResponse.ok) {
@@ -45,7 +43,6 @@ const Github = () => {
         const reposData = await reposResponse.json();
         setRepos(reposData);
         
-        // Get commits from the latest repository
         if (reposData.length > 0) {
           const commitsResponse = await fetch(`https://api.github.com/repos/MustardWombat/${reposData[0].name}/commits?per_page=3`);
           
@@ -53,7 +50,6 @@ const Github = () => {
             const commitsData = await commitsResponse.json();
             setCommits(commitsData);
           } else {
-            // If we can't get commits, we'll just show repos
             console.log('Could not fetch commits, but repos were loaded');
           }
         }
@@ -61,7 +57,6 @@ const Github = () => {
         console.error('Error fetching GitHub data:', err);
         setError('Unable to fetch GitHub data. GitHub API rate limit may have been exceeded.');
         
-        // Use fallback data if there's an error
         setCommits([
           {
             sha: '1',
@@ -96,7 +91,6 @@ const Github = () => {
     fetchGithubData();
   }, []);
 
-  // Format date to a more readable format
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleDateString('en-US', { 
@@ -106,7 +100,6 @@ const Github = () => {
     });
   };
 
-  // Generate a programming language color
   const getLanguageColor = (language: string | null) => {
     const colors: Record<string, string> = {
       JavaScript: 'bg-yellow-400',
@@ -141,7 +134,7 @@ const Github = () => {
       <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
         <div className="col-span-2 bg-granite border border-gray-700 rounded-lg p-6 hover:border-orange/50 transition-all duration-300">
           <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-            <Code className={`${error ? 'text-gray-500' : 'text-orange'}`} />
+            <Code className="text-orange" />
             Coding Activity
           </h3>
           
@@ -164,11 +157,11 @@ const Github = () => {
           
           <div className="flex justify-between items-center bg-darkgray/50 p-3 rounded-lg mb-6">
             <div className="flex items-center gap-2">
-              <Star className={`${error ? 'text-gray-500' : 'text-orange'}`} size={18} />
+              <Star className="text-orange" size={18} />
               <span>{loading ? <Skeleton className="h-4 w-16" /> : `${repos.length}+ Projects`}</span>
             </div>
             <div className="flex items-center gap-2">
-              <Code className={`${error ? 'text-gray-500' : 'text-orange'}`} size={18} />
+              <Code className="text-orange" size={18} />
               <span>
                 {loading ? (
                   <Skeleton className="h-4 w-16" />
@@ -178,7 +171,7 @@ const Github = () => {
               </span>
             </div>
             <div className="flex items-center gap-2">
-              <GitFork className={`${error ? 'text-gray-500' : 'text-orange'}`} size={18} />
+              <GitFork className="text-orange" size={18} />
               <span>Active Contributor</span>
             </div>
           </div>
@@ -209,7 +202,7 @@ const Github = () => {
         <div className="col-span-3 bg-granite border border-gray-700 rounded-lg hover:border-orange/50 transition-all duration-300">
           <div className="p-6 border-b border-gray-700">
             <h3 className="text-xl font-bold flex items-center gap-2">
-              <Terminal className={`${error ? 'text-gray-500' : 'text-orange'}`} />
+              <Terminal className="text-orange" />
               {commits.length ? 'Recent Commits' : 'Top Repositories'}
             </h3>
           </div>
@@ -226,7 +219,6 @@ const Github = () => {
           ) : (
             <div className="p-4">
               {commits.length > 0 ? (
-                // Show commits if available
                 commits.map((commit) => (
                   <a 
                     key={commit.sha}
@@ -249,7 +241,6 @@ const Github = () => {
                   </a>
                 ))
               ) : (
-                // Show repositories if no commits are available
                 repos.map((repo) => (
                   <a 
                     key={repo.name}
@@ -294,4 +285,3 @@ const Github = () => {
 };
 
 export default Github;
-
