@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Code, ExternalLink, Github, X } from 'lucide-react';
 import { Dialog, DialogContent, DialogOverlay } from '@/components/ui/dialog';
@@ -7,7 +6,7 @@ const projectsData = [
   {
     id: "project1",
     title: "Kinematic Vision Based Autonomous Robot",
-    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e",
+    image: "/lovable-uploads/b9506242-ade4-45c3-8b75-dc1ba3d9de63.png",
     description: "A team and I started this project in September 2024. The goal was to create a robot that could recognize and differentiate between good and bad eggs, pick them up using a kinematic arm, and drop them off in a basket. This project is still a work in progress.",
     technologies: ["Python", "ROS2", "Computer Vision", "Robotics"],
     links: {
@@ -18,7 +17,7 @@ const projectsData = [
   {
     id: "project2",
     title: "COSMOS OPEN AI Powered Study App",
-    image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
+    image: "/lovable-uploads/b9506242-ade4-45c3-8b75-dc1ba3d9de63.png",
     description: "This project uses OpenAI's API to provide personalized study assistance. It analyzes user input and recommends optimal learning strategies. Currently in early development, it aims to revolutionize how students study.",
     technologies: ["React", "TypeScript", "OpenAI API", "Firebase"],
     links: {
@@ -29,7 +28,7 @@ const projectsData = [
   {
     id: "project3",
     title: "Neural DataBase",
-    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5",
+    image: "/lovable-uploads/b9506242-ade4-45c3-8b75-dc1ba3d9de63.png",
     description: "An AI-Enhanced SQL Engine for Intelligent Query Optimization and Database Management. This innovation combines neural network concepts with traditional database operations to create more efficient and intelligent data retrieval systems.",
     technologies: ["Python", "SQL", "TensorFlow", "Docker"],
     links: {
@@ -76,7 +75,7 @@ const Projects = () => {
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
-                  target.src = "https://placehold.co/800x600/1A1A1A/FF6B00?text=Project";
+                  target.src = "/lovable-uploads/b9506242-ade4-45c3-8b75-dc1ba3d9de63.png";
                 }}
               />
             </div>
@@ -107,7 +106,6 @@ const Projects = () => {
         ))}
       </div>
       
-      {/* Modal using shadcn Dialog */}
       <Dialog open={modalOpen} onOpenChange={setModalOpen}>
         <DialogOverlay className="bg-black/80" />
         <DialogContent className="max-w-5xl w-[90vw] h-[90vh] p-0 bg-granite border border-gray-700 overflow-y-auto">
@@ -126,7 +124,7 @@ const Projects = () => {
                 className="w-full h-auto max-h-[50vh] object-cover"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
-                  target.src = "https://placehold.co/1200x800/1A1A1A/FF6B00?text=Project";
+                  target.src = "/lovable-uploads/b9506242-ade4-45c3-8b75-dc1ba3d9de63.png";
                 }}
               />
             </div>
