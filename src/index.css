@@ -76,7 +76,7 @@
   
   .animated-bar::after {
     content: '';
-    @apply absolute top-0 h-full w-1/3 bg-white/20;
+    @apply absolute top-0 h-full w-1/3 bg-orange/30;
     animation: animated-bar 2s infinite;
   }
   
@@ -116,11 +116,12 @@
   }
   
   .portfolio-item:hover img {
-    @apply scale-110 blur-sm;
+    @apply scale-110;
   }
   
   .portfolio-content {
-    @apply absolute inset-0 flex flex-col justify-end p-6 bg-gradient-to-t from-darkgray/90 to-transparent opacity-0 transition-opacity duration-300;
+    @apply absolute inset-0 flex flex-col justify-end p-6 bg-gradient-to-t from-darkgray/90 to-transparent transition-opacity duration-300;
+    opacity: 0;
   }
   
   .portfolio-item:hover .portfolio-content {
@@ -219,7 +220,7 @@
   }
   
   .blog-post {
-    @apply bg-granite rounded-lg overflow-hidden border border-white/10 transition-all duration-300 hover:border-orange/50 hover:shadow-[0_0_15px_rgba(255,107,0,0.2)];
+    @apply bg-granite rounded-lg overflow-hidden border border-white/10 transition-all duration-300 hover:border-orange/50 hover:shadow-[0_0_15px_rgba(255,107,0,0.2)] cursor-pointer;
     animation: slide-up 0.5s ease-out forwards;
     opacity: 0;
     transform: translateY(20px);
@@ -265,7 +266,7 @@
   }
   
   .modal {
-    @apply hidden fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4;
+    @apply fixed inset-0 bg-black/80 items-center justify-center z-50 p-4;
   }
   
   .modal-content {
@@ -280,7 +281,7 @@
   /* Custom Animations */
   @keyframes pulse {
     0% { opacity: 1; }
-    50% { opacity: 0.7; }
+    50% { opacity: 0.8; }
     100% { opacity: 1; }
   }
   
@@ -329,6 +330,11 @@
   @keyframes width-expand {
     0% { width: 0; }
     100% { width: 50%; }
+  }
+  
+  @keyframes scale-in {
+    0% { opacity: 0; transform: scale(0.9); }
+    100% { opacity: 1; transform: scale(1); }
   }
   
   /* Easter Eggs Styling */
