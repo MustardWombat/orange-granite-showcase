@@ -139,20 +139,18 @@ const Github = () => {
           </h3>
           
           <div className="mb-6 grid grid-cols-7 gap-1">
-            {Array.from({ length: 35 }).map((_, index) => (
-              <div 
-                key={index} 
-                className={`h-4 rounded ${
-                  Math.random() > 0.7 
-                    ? 'bg-orange' 
-                    : Math.random() > 0.5 
-                      ? 'bg-orange/50' 
-                      : Math.random() > 0.3 
-                        ? 'bg-orange/30' 
-                        : 'bg-darkgray'
-                }`}
-              ></div>
-            ))}
+            {error ? (
+              <div className="col-span-7 text-gray-500 text-sm text-center">
+                Unable to load GitHub contribution data
+              </div>
+            ) : (
+              Array.from({ length: 35 }).map((_, index) => (
+                <div 
+                  key={index} 
+                  className="h-4 rounded bg-darkgray"
+                ></div>
+              ))
+            )}
           </div>
           
           <div className="flex justify-between items-center bg-darkgray/50 p-3 rounded-lg mb-6">
