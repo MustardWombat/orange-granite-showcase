@@ -47,14 +47,19 @@ const Index = () => {
       <Hero />
       <AnimatedBar />
       <Projects />
+      <AnimatedBar />
       <Skills />
       <AnimatedBar />
       <CTASection />
       <AnimatedBar />
       <Education />
+      <AnimatedBar />
       <Organizations />
+      <AnimatedBar />
       <Github />
+      <AnimatedBar />
       <Blog />
+      <AnimatedBar />
       <Contact />
       <Footer />
       <EasterEggs />
