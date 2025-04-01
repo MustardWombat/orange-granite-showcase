@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Code, ExternalLink, Github, X } from 'lucide-react';
 import { Dialog, DialogContent, DialogOverlay } from '@/components/ui/dialog';
@@ -86,16 +87,11 @@ const Projects = () => {
               <p className="text-gray-400 line-clamp-2 mb-4">{project.description}</p>
               
               <div className="flex flex-wrap gap-2 mb-4">
-                {project.technologies.slice(0, 3).map((tech, index) => (
+                {project.technologies.map((tech, index) => (
                   <span key={index} className="text-xs px-2 py-1 bg-darkgray/70 rounded text-orange">
                     {tech}
                   </span>
                 ))}
-                {project.technologies.length > 3 && (
-                  <span className="text-xs px-2 py-1 bg-darkgray/70 rounded text-gray-400">
-                    +{project.technologies.length - 3} more
-                  </span>
-                )}
               </div>
               
               <button className="w-full py-2 text-center border border-orange/50 text-orange rounded hover:bg-orange/10 transition-colors">
