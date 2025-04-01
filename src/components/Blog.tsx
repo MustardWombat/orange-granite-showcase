@@ -1,6 +1,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { Calendar, ArrowRight, X } from 'lucide-react';
+import { Dialog, DialogContent, DialogOverlay } from '@/components/ui/dialog';
 
 const blogData = [
   {
@@ -112,14 +113,18 @@ const Blog = () => {
         </div>
       </div>
 
-      {/* Modal */}
-      {modalOpen && (
-        <div className="modal flex" onClick={() => setModalOpen(false)}>
-          <div className="modal-content" onClick={e => e.stopPropagation()}>
-            <button className="close" onClick={() => setModalOpen(false)}>
+      {/* Modal using shadcn Dialog */}
+      <Dialog open={modalOpen} onOpenChange={setModalOpen}>
+        <DialogOverlay className="bg-black/80" />
+        <DialogContent className="max-w-5xl w-[90vw] h-[90vh] p-0 bg-granite border border-gray-700 overflow-y-auto">
+          <div className="sticky top-0 bg-granite z-10 flex justify-between items-center p-6 border-b border-gray-700">
+            <h2 className="text-2xl font-bold mb-0 text-white">{currentBlog.title}</h2>
+            <button onClick={() => setModalOpen(false)} className="text-gray-400 hover:text-white">
               <X size={24} />
             </button>
-            <h2 className="text-2xl font-bold mb-4 text-white">{currentBlog.title}</h2>
+          </div>
+          
+          <div className="p-6">
             <div className="flex items-center mb-4 text-orange">
               <Calendar size={16} className="mr-2" />
               <span>{currentBlog.date}</span>
@@ -129,7 +134,7 @@ const Blog = () => {
               <img 
                 src={currentBlog.image} 
                 alt={currentBlog.title} 
-                className="w-full h-60 object-cover rounded-lg mb-4"
+                className="w-full h-auto max-h-[50vh] object-cover rounded-lg mb-4"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
                   target.style.display = 'none';
@@ -141,8 +146,8 @@ const Blog = () => {
               {currentBlog.content}
             </div>
           </div>
-        </div>
-      )}
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };

@@ -1,6 +1,7 @@
 
 import { useState } from 'react';
 import { Code, ExternalLink, Github, X } from 'lucide-react';
+import { Dialog, DialogContent, DialogOverlay } from '@/components/ui/dialog';
 
 const projectsData = [
   {
@@ -47,13 +48,7 @@ const Projects = () => {
     if (project) {
       setCurrentProject(project);
       setModalOpen(true);
-      document.body.style.overflow = 'hidden';
     }
-  };
-  
-  const closeModal = () => {
-    setModalOpen(false);
-    document.body.style.overflow = 'auto';
   };
 
   return (
@@ -112,73 +107,69 @@ const Projects = () => {
         ))}
       </div>
       
-      {/* Modal */}
-      {modalOpen && (
-        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4" onClick={closeModal}>
-          <div 
-            className="bg-granite rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto" 
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="sticky top-0 bg-granite z-10 flex justify-between items-center p-6 border-b border-gray-700">
-              <h2 className="text-2xl font-bold">{currentProject.title}</h2>
-              <button onClick={closeModal} className="text-gray-400 hover:text-white">
-                <X size={24} />
-              </button>
+      {/* Modal using shadcn Dialog */}
+      <Dialog open={modalOpen} onOpenChange={setModalOpen}>
+        <DialogOverlay className="bg-black/80" />
+        <DialogContent className="max-w-5xl w-[90vw] h-[90vh] p-0 bg-granite border border-gray-700 overflow-y-auto">
+          <div className="sticky top-0 bg-granite z-10 flex justify-between items-center p-6 border-b border-gray-700">
+            <h2 className="text-2xl font-bold">{currentProject.title}</h2>
+            <button onClick={() => setModalOpen(false)} className="text-gray-400 hover:text-white">
+              <X size={24} />
+            </button>
+          </div>
+          
+          <div className="p-6">
+            <div className="mb-6 rounded-lg overflow-hidden">
+              <img 
+                src={currentProject.image} 
+                alt={currentProject.title} 
+                className="w-full h-auto max-h-[50vh] object-cover"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.src = "https://placehold.co/1200x800/1A1A1A/FF6B00?text=Project";
+                }}
+              />
             </div>
             
-            <div className="p-6">
-              <div className="mb-6 rounded-lg overflow-hidden">
-                <img 
-                  src={currentProject.image} 
-                  alt={currentProject.title} 
-                  className="w-full h-auto object-cover"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.src = "https://placehold.co/1200x800/1A1A1A/FF6B00?text=Project";
-                  }}
-                />
-              </div>
-              
-              <div className="mb-6">
-                <h3 className="text-xl font-bold mb-2 text-orange">Description</h3>
-                <p className="text-gray-300">{currentProject.description}</p>
-              </div>
-              
-              <div className="mb-6">
-                <h3 className="text-xl font-bold mb-2 text-orange">Technologies</h3>
-                <div className="flex flex-wrap gap-2">
-                  {currentProject.technologies.map((tech, index) => (
-                    <span key={index} className="px-3 py-1 bg-darkgray rounded text-gray-300">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              
-              <div className="flex flex-wrap gap-4">
-                <a 
-                  href={currentProject.links.demo} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="tech-btn primary flex items-center gap-2"
-                >
-                  <ExternalLink size={18} />
-                  Live Demo
-                </a>
-                <a 
-                  href={currentProject.links.github} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="tech-btn secondary flex items-center gap-2"
-                >
-                  <Github size={18} />
-                  View Code
-                </a>
+            <div className="mb-6">
+              <h3 className="text-xl font-bold mb-2 text-orange">Description</h3>
+              <p className="text-gray-300">{currentProject.description}</p>
+            </div>
+            
+            <div className="mb-6">
+              <h3 className="text-xl font-bold mb-2 text-orange">Technologies</h3>
+              <div className="flex flex-wrap gap-2">
+                {currentProject.technologies.map((tech, index) => (
+                  <span key={index} className="px-3 py-1 bg-darkgray rounded text-gray-300">
+                    {tech}
+                  </span>
+                ))}
               </div>
             </div>
+            
+            <div className="flex flex-wrap gap-4">
+              <a 
+                href={currentProject.links.demo} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="tech-btn primary flex items-center gap-2"
+              >
+                <ExternalLink size={18} />
+                Live Demo
+              </a>
+              <a 
+                href={currentProject.links.github} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="tech-btn secondary flex items-center gap-2"
+              >
+                <Github size={18} />
+                View Code
+              </a>
+            </div>
           </div>
-        </div>
-      )}
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };

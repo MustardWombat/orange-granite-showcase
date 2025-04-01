@@ -1,6 +1,7 @@
 
 import { useState } from 'react';
 import { Users, X } from 'lucide-react';
+import { Dialog, DialogContent, DialogOverlay } from '@/components/ui/dialog';
 
 const orgsData = [
   {
@@ -17,7 +18,7 @@ const orgsData = [
     icon: "🛠️",
     title: "FRC Robotics Team 815",
     description: "President and Lead Programmer directing a team of 20+ members, supervising project timelines, and ensuring team cohesion for competition-ready robots.",
-    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5",
+    image: "/lovable-uploads/0d606ddf-ff01-45db-883c-985996b10282.png",
     content: "As President and Lead Programmer of FRC Team 815, I led a diverse team of over 20 students through the entire robotics design and build process, from initial concept to competition-ready implementation.\n\nMy role involved overseeing all aspects of the robotics project, including mechanical design, electrical systems, and software development. I established project timelines, delegated responsibilities, and implemented agile methodologies to ensure steady progress despite the tight six-week build season constraints.\n\nOn the technical side, I architected and implemented the robot's control system using Java, focusing on reliable autonomous operations and responsive teleop control. This included developing sensor integration systems, motion control algorithms, and vision processing capabilities that allowed our robot to perform complex tasks during competition.\n\nBeyond technical leadership, I fostered a collaborative team environment by mentoring new members, facilitating communication between sub-teams, and organizing regular knowledge-sharing sessions. This approach not only improved our technical outcomes but also created a supportive community that attracted and retained diverse talent.",
     tags: ["Team Leadership", "Java", "Project Management", "Robotics"]
   },
@@ -93,58 +94,54 @@ const Organizations = () => {
         ))}
       </div>
       
-      {/* Modal */}
-      {modalOpen && (
-        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4" onClick={closeModal}>
-          <div 
-            className="bg-granite rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto" 
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="sticky top-0 bg-granite z-10 flex justify-between items-center p-6 border-b border-gray-700">
-              <div className="flex items-center gap-3">
-                <span className="text-3xl">{currentOrg.icon}</span>
-                <h2 className="text-2xl font-bold">{currentOrg.title}</h2>
+      {/* Modal using shadcn Dialog */}
+      <Dialog open={modalOpen} onOpenChange={setModalOpen}>
+        <DialogOverlay className="bg-black/80" />
+        <DialogContent className="max-w-5xl w-[90vw] h-[90vh] p-0 bg-granite border border-gray-700 overflow-y-auto">
+          <div className="sticky top-0 bg-granite z-10 flex justify-between items-center p-6 border-b border-gray-700">
+            <div className="flex items-center gap-3">
+              <span className="text-3xl">{currentOrg.icon}</span>
+              <h2 className="text-2xl font-bold">{currentOrg.title}</h2>
+            </div>
+            <button onClick={closeModal} className="text-gray-400 hover:text-white">
+              <X size={24} />
+            </button>
+          </div>
+          
+          <div className="p-6">
+            {currentOrg.image && (
+              <div className="mb-6 rounded-lg overflow-hidden">
+                <img 
+                  src={currentOrg.image} 
+                  alt={currentOrg.title} 
+                  className="w-full h-auto max-h-[50vh] object-cover"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                  }}
+                />
               </div>
-              <button onClick={closeModal} className="text-gray-400 hover:text-white">
-                <X size={24} />
-              </button>
+            )}
+            
+            <div className="mb-6">
+              <div className="text-gray-300 whitespace-pre-line">
+                {currentOrg.content}
+              </div>
             </div>
             
-            <div className="p-6">
-              {currentOrg.image && (
-                <div className="mb-6 rounded-lg overflow-hidden">
-                  <img 
-                    src={currentOrg.image} 
-                    alt={currentOrg.title} 
-                    className="w-full h-auto object-cover"
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      target.style.display = 'none';
-                    }}
-                  />
-                </div>
-              )}
-              
-              <div className="mb-6">
-                <div className="text-gray-300 whitespace-pre-line">
-                  {currentOrg.content}
-                </div>
-              </div>
-              
-              <div className="mt-6">
-                <h3 className="text-xl font-bold mb-2 text-orange">Key Skills</h3>
-                <div className="flex flex-wrap gap-2">
-                  {currentOrg.tags.map((tag, index) => (
-                    <span key={index} className="px-3 py-1 bg-darkgray rounded text-gray-300">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+            <div className="mt-6">
+              <h3 className="text-xl font-bold mb-2 text-orange">Key Skills</h3>
+              <div className="flex flex-wrap gap-2">
+                {currentOrg.tags.map((tag, index) => (
+                  <span key={index} className="px-3 py-1 bg-darkgray rounded text-gray-300">
+                    {tag}
+                  </span>
+                ))}
               </div>
             </div>
           </div>
-        </div>
-      )}
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };
