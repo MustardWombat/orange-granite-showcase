@@ -16,7 +16,7 @@ const experiences = [
     period: "January 2021 - May 2022",
     description: "Provided exceptional customer service in a fast-paced environment. Maintained cleanliness standards and food safety protocols while efficiently preparing orders. Contributed to team performance that exceeded monthly sales targets by 15%.",
     skills: ["Customer Service", "Food Preparation", "Team Collaboration", "Time Management"],
-    logo: "/lovable-uploads/0d606ddf-ff01-45db-883c-985996b10282.png"
+    logo: "/lovable-uploads/428be5f8-d7ad-4054-b69f-53c635d8de45.png"
   }
 ];
 
@@ -51,7 +51,7 @@ const Experience = () => {
               </div>
               
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-16 h-16 bg-white rounded-lg overflow-hidden flex items-center justify-center p-1">
+                <div className="w-24 h-24 bg-white rounded-lg overflow-hidden flex items-center justify-center p-2">
                   <img 
                     src={exp.logo} 
                     alt={`${exp.company} logo`} 
