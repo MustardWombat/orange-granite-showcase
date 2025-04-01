@@ -10,7 +10,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center mb-8">
           <div className="mb-6 md:mb-0">
             <a href="#" className="text-2xl font-mono font-bold text-white hover:text-orange transition-colors">
-              <span className="text-orange">&lt;</span>JW<span className="text-orange">/&gt;</span>
+              <span className="text-orange">&lt;</span>WewantWilliams<span className="text-orange">/&gt;</span>
             </a>
             <p className="mt-2 text-gray-400 max-w-sm">
               A Computer Science student passionate about robotics, software engineering, and building solutions that matter.

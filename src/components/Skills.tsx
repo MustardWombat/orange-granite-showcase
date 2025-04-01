@@ -25,6 +25,14 @@ const skillCategories = [
   }
 ];
 
+// Pre-calculate skill percentages to avoid regenerating on hover
+const skillPercentages = {};
+skillCategories.forEach(category => {
+  category.skills.forEach(skill => {
+    skillPercentages[skill] = Math.random() * 40 + 60;
+  });
+});
+
 const Skills = () => {
   const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
 
@@ -64,7 +72,7 @@ const Skills = () => {
                   <div className="skill-bar-bg">
                     <div 
                       className="skill-bar" 
-                      style={{width: `${Math.random() * 40 + 60}%`}}
+                      style={{width: `${skillPercentages[skill]}%`}}
                     ></div>
                   </div>
                 </li>

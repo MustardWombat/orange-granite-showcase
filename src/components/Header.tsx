@@ -26,7 +26,7 @@ const Header = () => {
       <div className="container mx-auto px-6">
         <nav className="flex items-center justify-between">
           <a href="#" className="text-2xl font-mono font-bold text-white hover:text-orange transition-colors">
-            <span className="text-orange">&lt;</span>JW<span className="text-orange">/&gt;</span>
+            <span className="text-orange">&lt;</span>WewantWilliams<span className="text-orange">/&gt;</span>
           </a>
           
           <div className="md:hidden">
