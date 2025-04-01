@@ -90,7 +90,7 @@ const Organizations = () => {
       
       {/* Modal */}
       {modalOpen && (
-        <div className="modal flex" onClick={() => setModalOpen(false)}>
+        <div className="modal flex z-50" onClick={() => setModalOpen(false)}>
           <div className="modal-content" onClick={e => e.stopPropagation()}>
             <button className="close" onClick={() => setModalOpen(false)}>
               <X size={24} />

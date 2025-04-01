@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -63,7 +62,6 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Portfolio specific colors
 				granite: '#2D2D2D',
 				orange: {
 					DEFAULT: '#FF6B00',
@@ -105,9 +103,8 @@ export default {
 					'100%': { backgroundPosition: '0% 50%' }
 				},
 				'animated-bar': {
-					'0%': { width: '0%', left: '0' },
-					'50%': { width: '100%', left: '0' },
-					'100%': { width: '0%', left: '100%' }
+					'0%': { transform: 'translateX(-100%)' },
+					'100%': { transform: 'translateX(500%)' }
 				}
 			},
 			animation: {

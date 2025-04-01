@@ -45,7 +45,7 @@ const Index = () => {
     <main className="bg-[#121212] text-white">
       <Header />
       <Hero />
-      <AnimatedBar />
+      <AnimatedBar isThick={true} />
       <Projects />
       <AnimatedBar />
       <Skills />
