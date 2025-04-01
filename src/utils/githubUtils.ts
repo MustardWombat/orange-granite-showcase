@@ -32,7 +32,7 @@ export const fetchGithubContributions = async (): Promise<GithubContribution[]> 
   `;
 
   try {
-    const response = await request({
+    const response: any = await request({
       url: 'https://api.github.com/graphql',
       document: query,
       requestHeaders: {
@@ -41,10 +41,10 @@ export const fetchGithubContributions = async (): Promise<GithubContribution[]> 
     });
 
     const contributionDays = response.user.contributionsCollection.contributionCalendar.weeks
-      .flatMap(week => week.contributionDays)
+      .flatMap((week: any) => week.contributionDays)
       .slice(-35);  // Last 35 days
 
-    return contributionDays.map(day => ({
+    return contributionDays.map((day: any) => ({
       date: day.date,
       count: day.contributionCount
     }));
