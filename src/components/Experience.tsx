@@ -35,12 +35,12 @@ const Experience = () => {
         {experiences.map((exp, index) => (
           <div key={index} className="bg-granite border border-gray-700 rounded-lg p-6 hover:border-orange/50 transition-all duration-300">
             <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full overflow-hidden bg-darkgray flex items-center justify-center">
+              <div className="flex items-center gap-4">
+                <div className="w-16 h-16 bg-white rounded-lg overflow-hidden flex items-center justify-center p-2">
                   <img 
                     src={exp.logo} 
                     alt={`${exp.company} logo`} 
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
                       target.src = "/lovable-uploads/b9506242-ade4-45c3-8b75-dc1ba3d9de63.png";
