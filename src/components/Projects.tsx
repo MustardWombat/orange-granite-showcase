@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Code, ExternalLink, Github, X } from 'lucide-react';
 import { Dialog, DialogContent, DialogOverlay } from '@/components/ui/dialog';
