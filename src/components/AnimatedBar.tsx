@@ -1,7 +1,7 @@
 
 const AnimatedBar = () => {
   return (
-    <hr className="animated-bar" />
+    <hr className="animated-bar border-orange-glow" />
   );
 };
 

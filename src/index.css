@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap');
 
 @tailwind base;
@@ -68,12 +67,20 @@
   }
   
   .animated-bar {
-    @apply h-1 w-full bg-gradient-to-r from-orange-dark via-orange to-orange-light overflow-hidden relative my-12;
+    @apply h-3 w-full bg-gradient-to-r from-orange-dark via-orange to-orange-light overflow-hidden relative my-12;
   }
   
   .animated-bar::after {
     content: '';
     @apply absolute top-0 h-full w-1/3 bg-white/20 animate-animated-bar;
+  }
+  
+  .border-orange-glow {
+    @apply relative;
+    border: 4px solid transparent;
+    border-image: linear-gradient(to right, #E55F00, #FF6B00, #FF8534, #FF6B00, #E55F00);
+    border-image-slice: 1;
+    box-shadow: 0 0 20px rgba(255, 107, 0, 0.5);
   }
   
   .code-line {
