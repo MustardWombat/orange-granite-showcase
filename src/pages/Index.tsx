@@ -12,6 +12,7 @@ import Experience from '@/components/Experience';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import Blog from '@/components/Blog';
+import Roadmap from '@/components/Roadmap';
 
 const Index = () => {
   useEffect(() => {
@@ -50,6 +51,7 @@ const Index = () => {
         <Projects />
         <Skills />
         <Experience />
+        <Roadmap />
         <Education />
         <Organizations />
         <Blog />

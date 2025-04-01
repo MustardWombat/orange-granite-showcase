@@ -49,6 +49,7 @@ const Header = () => {
             <li className="md:ml-2"><a href="#projects" className="nav-link">Projects</a></li>
             <li><a href="#skills" className="nav-link">Skills</a></li>
             <li><a href="#experience" className="nav-link">Experience</a></li>
+            <li><a href="#roadmap" className="nav-link">Roadmap</a></li>
             <li><a href="#education" className="nav-link">Education</a></li>
             <li><a href="#organizations" className="nav-link">Organizations</a></li>
             <li><a href="#github" className="nav-link">GitHub</a></li>
