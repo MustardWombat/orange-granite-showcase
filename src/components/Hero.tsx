@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from 'react';
 import { ArrowRight, Github, Linkedin, Mail } from 'lucide-react';
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 
 const Hero = () => {
   const [text, setText] = useState('');
@@ -82,23 +83,22 @@ const Hero = () => {
           
           <div className="lg:col-span-5 flex justify-center">
             <div className="relative w-full max-w-sm aspect-square">
-              <div className="absolute inset-0 bg-gradient-to-tr from-orange-dark via-orange to-orange-light rounded-full blur-xl opacity-25 animate-pulse"></div>
-              <div className="absolute inset-2 bg-gradient-to-tr from-orange-dark via-orange to-orange-light rounded-full"></div>
-              <div className="absolute inset-3 bg-darkgray rounded-full flex items-center justify-center">
-                <img 
-                  src="https://images.unsplash.com/photo-1518770660439-4636190af475" 
-                  alt="James Williams" 
-                  className="w-[92%] h-[92%] object-cover rounded-full hover:scale-105 transition-transform duration-500"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.src = "https://placehold.co/400x400/FF6B00/FFFFFF?text=JW";
-                  }}
-                />
+              <div className="absolute inset-0 bg-gradient-to-tr from-orange-dark via-orange to-orange-light rounded-xl blur-xl opacity-25 animate-pulse"></div>
+              <div className="absolute inset-2 bg-gradient-to-tr from-orange-dark via-orange to-orange-light rounded-xl"></div>
+              <div className="absolute inset-3 bg-darkgray rounded-xl flex items-center justify-center">
+                <Avatar className="w-[92%] h-[92%] rounded-xl">
+                  <AvatarImage 
+                    src="/lovable-uploads/16a16a2a-dc5a-4361-a5ee-2d214624db5f.png"
+                    alt="James Williams"
+                    className="object-cover grayscale hover:scale-105 transition-transform duration-500"
+                  />
+                  <AvatarFallback className="rounded-xl bg-darkgray text-4xl text-orange">JW</AvatarFallback>
+                </Avatar>
               </div>
               
               {/* Tech decorations */}
-              <div className="absolute -bottom-6 -right-6 w-24 h-24 border-2 border-dashed border-orange/50 rounded-full animate-[spin_15s_linear_infinite]"></div>
-              <div className="absolute -top-6 -left-6 w-16 h-16 border border-orange/30 rounded-full animate-[spin_12s_linear_infinite_reverse]"></div>
+              <div className="absolute -bottom-6 -right-6 w-24 h-24 border-2 border-dashed border-orange/50 rounded-xl animate-[spin_15s_linear_infinite]"></div>
+              <div className="absolute -top-6 -left-6 w-16 h-16 border border-orange/30 rounded-xl animate-[spin_12s_linear_infinite_reverse]"></div>
             </div>
           </div>
         </div>
