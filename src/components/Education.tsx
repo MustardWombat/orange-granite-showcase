@@ -15,7 +15,8 @@ const educationData = [
     school: "Allen Park High School",
     degree: "High School Diploma",
     details: ["GPA: 3.5"],
-    period: "September 2020 - May 2024"
+    period: "September 2020 - May 2024",
+    logo: "/lovable-uploads/e1d4484f-8353-43f9-b310-307fa100ba36.png"
   }
 ];
 
@@ -52,7 +53,7 @@ const Education = () => {
               
               <div className="flex items-center gap-4 mb-4">
                 {item.logo && (
-                  <div className="w-20 h-20 bg-white rounded-lg overflow-hidden flex items-center justify-center p-2">
+                  <div className="w-20 h-20 rounded-md overflow-hidden flex items-center justify-center bg-white p-2">
                     <img 
                       src={item.logo} 
                       alt={`${item.school} logo`} 
