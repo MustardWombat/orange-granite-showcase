@@ -141,7 +141,7 @@ const Github = () => {
       <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
         <div className="col-span-2 bg-granite border border-gray-700 rounded-lg p-6 hover:border-orange/50 transition-all duration-300">
           <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-            <Code className="text-orange" />
+            <Code className={`${error ? 'text-gray-500' : 'text-orange'}`} />
             Coding Activity
           </h3>
           
@@ -164,11 +164,11 @@ const Github = () => {
           
           <div className="flex justify-between items-center bg-darkgray/50 p-3 rounded-lg mb-6">
             <div className="flex items-center gap-2">
-              <Star className="text-orange" size={18} />
+              <Star className={`${error ? 'text-gray-500' : 'text-orange'}`} size={18} />
               <span>{loading ? <Skeleton className="h-4 w-16" /> : `${repos.length}+ Projects`}</span>
             </div>
             <div className="flex items-center gap-2">
-              <Code className="text-orange" size={18} />
+              <Code className={`${error ? 'text-gray-500' : 'text-orange'}`} size={18} />
               <span>
                 {loading ? (
                   <Skeleton className="h-4 w-16" />
@@ -178,7 +178,7 @@ const Github = () => {
               </span>
             </div>
             <div className="flex items-center gap-2">
-              <GitFork className="text-orange" size={18} />
+              <GitFork className={`${error ? 'text-gray-500' : 'text-orange'}`} size={18} />
               <span>Active Contributor</span>
             </div>
           </div>
@@ -209,7 +209,7 @@ const Github = () => {
         <div className="col-span-3 bg-granite border border-gray-700 rounded-lg hover:border-orange/50 transition-all duration-300">
           <div className="p-6 border-b border-gray-700">
             <h3 className="text-xl font-bold flex items-center gap-2">
-              <Terminal className="text-orange" />
+              <Terminal className={`${error ? 'text-gray-500' : 'text-orange'}`} />
               {commits.length ? 'Recent Commits' : 'Top Repositories'}
             </h3>
           </div>
@@ -294,3 +294,4 @@ const Github = () => {
 };
 
 export default Github;
+
