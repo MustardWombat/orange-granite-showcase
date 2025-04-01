@@ -57,10 +57,10 @@ const Hero = () => {
               </p>
               
               <div className="flex gap-5 mb-8">
-                <a href="#" className="social-icon-link" aria-label="GitHub">
+                <a href="https://github.com/MustardWombat" className="social-icon-link" aria-label="GitHub">
                   <Github className="w-6 h-6" />
                 </a>
-                <a href="#" className="social-icon-link" aria-label="LinkedIn">
+                <a href="https://www.linkedin.com/in/james-williams-491329317/" className="social-icon-link" aria-label="LinkedIn">
                   <Linkedin className="w-6 h-6" />
                 </a>
                 <a href="mailto:will4379@msu.edu" className="social-icon-link" aria-label="Email">

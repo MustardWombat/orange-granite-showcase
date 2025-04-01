@@ -129,7 +129,7 @@ const Github = () => {
               <ExternalLink size={16} />
               Portfolio
             </a>
-            <a href="#" className="tech-btn primary flex items-center gap-2">
+            <a href="https://github.com/MustardWombat" className="tech-btn primary flex items-center gap-2">
               <GithubIcon size={16} />
               GitHub
             </a>

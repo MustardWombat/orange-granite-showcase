@@ -19,10 +19,10 @@ const Footer = () => {
           
           <div className="flex flex-col items-end">
             <div className="flex space-x-4 mb-4">
-              <a href="#" className="footer-social-link" aria-label="GitHub">
+              <a href="https://github.com/MustardWombat" className="footer-social-link" aria-label="GitHub">
                 <Github size={20} />
               </a>
-              <a href="#" className="footer-social-link" aria-label="LinkedIn">
+              <a href="https://www.linkedin.com/in/james-williams-491329317/" className="footer-social-link" aria-label="LinkedIn">
                 <Linkedin size={20} />
               </a>
               <a href="#" className="footer-social-link" aria-label="Twitter">
