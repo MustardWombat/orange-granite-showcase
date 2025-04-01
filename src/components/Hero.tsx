@@ -89,7 +89,7 @@ const Hero = () => {
                   <AvatarImage 
                     src="/lovable-uploads/16a16a2a-dc5a-4361-a5ee-2d214624db5f.png"
                     alt="James Williams"
-                    className="object-cover object-top grayscale hover:scale-105 transition-transform duration-500"
+                    className="object-cover object-top grayscale hover:scale-105 transition-transform duration-500 translate-y-4"
                   />
                   <AvatarFallback className="rounded-xl bg-darkgray text-4xl text-orange">JW</AvatarFallback>
                 </Avatar>
