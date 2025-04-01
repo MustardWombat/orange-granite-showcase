@@ -8,7 +8,7 @@ const experiences = [
     period: "June 2022 - Present",
     description: "Managing high-volume orders with accuracy and efficiency, increasing customer satisfaction by over 20%. Responsible for end-of-day operations including inventory management and closing procedures.",
     skills: ["Customer Service", "Team Coordination", "Cash Handling", "Problem Solving"],
-    logo: "/lovable-uploads/b9506242-ade4-45c3-8b75-dc1ba3d9de63.png"
+    logo: "/lovable-uploads/bb105fd8-110e-4cb5-abf3-dd0c89de260d.png"
   },
   {
     title: "Team Member",
@@ -86,3 +86,4 @@ const Experience = () => {
 };
 
 export default Experience;
+
