@@ -31,16 +31,31 @@ const Experience = () => {
         <div className="h-1 w-20 bg-orange"></div>
       </div>
       
-      <div className="space-y-8">
+      <div className="relative">
+        <div className="hidden md:block absolute left-1/2 top-0 h-full w-px bg-orange/30 transform -translate-x-1/2"></div>
+        
         {experiences.map((exp, index) => (
-          <div key={index} className="bg-granite border border-gray-700 rounded-lg p-6 hover:border-orange/50 transition-all duration-300">
-            <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full overflow-hidden bg-darkgray flex items-center justify-center">
+          <div 
+            key={index}
+            className={`mb-16 last:mb-0 md:w-1/2 relative ${
+              index % 2 === 0 ? 'md:pr-12 md:ml-auto' : 'md:pl-12'
+            }`}
+          >
+            {index % 2 === 0 && <div className="hidden md:block absolute top-6 left-[-10px] w-4 h-4 rounded-full bg-orange z-10"></div>}
+            {index % 2 === 1 && <div className="hidden md:block absolute top-6 right-[-10px] w-4 h-4 rounded-full bg-orange z-10"></div>}
+            
+            <div className="bg-granite border border-gray-700 rounded-lg p-6 hover:border-orange/50 transition-all duration-300">
+              <div className="flex items-center gap-2 text-orange mb-3">
+                <Calendar className="w-4 h-4" />
+                <span>{exp.period}</span>
+              </div>
+              
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-16 h-16 bg-white rounded-lg overflow-hidden flex items-center justify-center p-1">
                   <img 
                     src={exp.logo} 
                     alt={`${exp.company} logo`} 
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
                       target.src = "/lovable-uploads/b9506242-ade4-45c3-8b75-dc1ba3d9de63.png";
@@ -48,24 +63,20 @@ const Experience = () => {
                   />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-white">{exp.title}</h3>
+                  <h3 className="text-xl font-bold">{exp.title}</h3>
                   <p className="text-orange">{exp.company}</p>
                 </div>
               </div>
-              <div className="flex items-center gap-2 text-gray-400 mt-2 md:mt-0">
-                <Calendar className="w-4 h-4" />
-                <span>{exp.period}</span>
+              
+              <p className="text-gray-300 mb-4">{exp.description}</p>
+              
+              <div className="flex flex-wrap gap-2">
+                {exp.skills.map((skill, skillIndex) => (
+                  <span key={skillIndex} className="bg-darkgray px-3 py-1 rounded text-sm text-gray-300">
+                    {skill}
+                  </span>
+                ))}
               </div>
-            </div>
-            
-            <p className="text-gray-300 mb-4">{exp.description}</p>
-            
-            <div className="flex flex-wrap gap-2">
-              {exp.skills.map((skill, skillIndex) => (
-                <span key={skillIndex} className="bg-darkgray px-3 py-1 rounded text-sm text-gray-300">
-                  {skill}
-                </span>
-              ))}
             </div>
           </div>
         ))}
