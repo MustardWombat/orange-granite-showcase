@@ -1,4 +1,3 @@
-
 import { GraduationCap, Calendar } from 'lucide-react';
 
 const educationData = [
@@ -57,7 +56,7 @@ const Education = () => {
                     <img 
                       src={item.logo} 
                       alt={`${item.school} logo`} 
-                      className={`w-full h-full object-contain ${item.id === 1 ? 'scale-110' : ''}`}
+                      className={`w-full h-full object-cover ${item.id === 1 ? 'scale-[1.5]' : ''}`}
                     />
                   </div>
                 )}
