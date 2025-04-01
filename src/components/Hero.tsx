@@ -46,10 +46,10 @@ const Hero = () => {
               I'd love to show you around, so below is everything there is to know about me, including my past or current projects, particular skills I'm proud of, and even my blog!
             </p>
             
-            <div className="bg-darkgray/80 p-4 rounded-lg border border-white/10 mt-8" ref={codeLineRef}>
-              <div className="code-line"><span>01</span> function <span className="text-orange">solveProblems</span>(ideas, skills) {'{'}</div>
-              <div className="code-line"><span>02</span>    return ideas.map(idea => <span className="text-orange">implement</span>(idea, skills));</div>
-              <div className="code-line"><span>03</span> {'}'}</div>
+            <div className="bg-darkgray/80 p-4 rounded-lg border border-white/10 mt-8 overflow-x-auto" ref={codeLineRef}>
+              <div className="code-line"><span>01</span> function <span className="text-orange">solveProblems</span>(ideas, skills) {"{"}</div>
+              <div className="code-line"><span>02</span>    return ideas.map(idea {"=>"} <span className="text-orange">implement</span>(idea, skills));</div>
+              <div className="code-line"><span>03</span> {"}"}</div>
               <div className="code-line"><span>04</span> <span className="animate-cursor-blink">|</span></div>
             </div>
             
