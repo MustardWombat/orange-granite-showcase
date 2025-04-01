@@ -9,7 +9,7 @@ const orgsData = [
     icon: "🤖",
     title: "Precision Agriculture Robotics Club",
     description: "Perception and Navigation team member collaborating to create autonomously controlled robots using Python, C++, and microcontrollers.",
-    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e",
+    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
     content: "As a member of the Perception and Navigation team within the Precision Agriculture Robotics Club, I've been instrumental in developing systems that allow robots to sense their environment and navigate autonomously through agricultural fields.\n\nOur team focuses on integrating computer vision with sensor data to create reliable navigation systems that can operate in the challenging and variable conditions of agricultural environments. Using technologies like LiDAR, RGB-D cameras, and various environmental sensors, we've developed algorithms that enable robots to detect crop rows, identify obstacles, and make real-time navigation decisions.\n\nThrough this club, I've gained hands-on experience implementing cutting-edge robotics concepts using Python and C++ while working with platforms like ROS (Robot Operating System). This practical experience has deepened my understanding of sensor fusion, computer vision, and autonomous navigation techniques that are essential in modern robotics.",
     tags: ["Robotics", "Python", "Computer Vision", "ROS"]
   },
@@ -27,7 +27,7 @@ const orgsData = [
     icon: "💼",
     title: "Work Experience",
     description: "Two years at Tim Hortons as Cashier/Closer, managing high-volume orders with accuracy and efficiency, increasing customer satisfaction by over 20%.",
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
+    image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81",
     content: "During my two years at Tim Hortons, I developed valuable skills in customer service, time management, and team collaboration that have proven transferable to my technical pursuits.\n\nAs a Cashier and Closer, I managed high-volume customer interactions during peak hours while maintaining accuracy and efficiency in order processing. This fast-paced environment taught me to prioritize tasks effectively, communicate clearly under pressure, and adapt quickly to changing conditions—skills that have proven invaluable in technical project management.\n\nMy responsibilities included reconciling daily transactions, managing inventory, and ensuring store cleanliness and readiness for the next business day. This role required attention to detail and systematic thinking, traits that translate directly to debugging code and building reliable systems.\n\nPerhaps most significantly, I implemented several process improvements that streamlined closing procedures and reduced closing time by approximately 30 minutes per shift. This initiative demonstrated my ability to analyze workflows, identify inefficiencies, and implement practical solutions—an approach I now apply to technical problem solving.",
     tags: ["Customer Service", "Process Improvement", "Team Coordination"]
   }
@@ -68,27 +68,40 @@ const Organizations = () => {
             className="org-card"
             onClick={() => openModal(org.id)}
           >
-            <div className="bg-granite border border-gray-700 rounded-lg p-6 hover:border-orange/50 hover:shadow-[0_0_15px_rgba(255,107,0,0.15)] transition-all duration-300 h-full flex flex-col">
-              <div className="text-4xl mb-4">{org.icon}</div>
-              <h3 className="text-xl font-bold mb-3 group-hover:text-orange transition-colors">{org.title}</h3>
-              <p className="text-gray-400 mb-4 flex-grow">{org.description}</p>
-              
-              <div className="flex flex-wrap gap-2 mb-4">
-                {org.tags.slice(0, 2).map((tag, index) => (
-                  <span key={index} className="text-xs px-2 py-1 bg-darkgray/70 rounded text-orange">
-                    {tag}
-                  </span>
-                ))}
-                {org.tags.length > 2 && (
-                  <span className="text-xs px-2 py-1 bg-darkgray/70 rounded text-gray-400">
-                    +{org.tags.length - 2} more
-                  </span>
-                )}
+            <div className="bg-granite border border-gray-700 rounded-lg overflow-hidden hover:border-orange/50 hover:shadow-[0_0_15px_rgba(255,107,0,0.15)] transition-all duration-300 h-full flex flex-col">
+              <div className="h-48 overflow-hidden">
+                <img 
+                  src={org.image} 
+                  alt={org.title}
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.src = "https://placehold.co/800x600/1A1A1A/FF6B00?text=Organization";
+                  }}
+                />
               </div>
-              
-              <button className="text-orange hover:text-orange-light transition-colors flex items-center">
-                Learn More <span className="ml-1">→</span>
-              </button>
+              <div className="p-6 flex flex-col flex-grow">
+                <div className="text-4xl mb-4">{org.icon}</div>
+                <h3 className="text-xl font-bold mb-3 group-hover:text-orange transition-colors">{org.title}</h3>
+                <p className="text-gray-400 mb-4 flex-grow">{org.description}</p>
+                
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {org.tags.slice(0, 2).map((tag, index) => (
+                    <span key={index} className="text-xs px-2 py-1 bg-darkgray/70 rounded text-orange">
+                      {tag}
+                    </span>
+                  ))}
+                  {org.tags.length > 2 && (
+                    <span className="text-xs px-2 py-1 bg-darkgray/70 rounded text-gray-400">
+                      +{org.tags.length - 2} more
+                    </span>
+                  )}
+                </div>
+                
+                <button className="text-orange hover:text-orange-light transition-colors flex items-center">
+                  Learn More <span className="ml-1">→</span>
+                </button>
+              </div>
             </div>
           </div>
         ))}
