@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import { ArrowRight, Github, Linkedin, Mail } from 'lucide-react';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
@@ -89,12 +90,13 @@ const Hero = () => {
                   <AvatarImage 
                     src="/lovable-uploads/16a16a2a-dc5a-4361-a5ee-2d214624db5f.png"
                     alt="James Williams"
-                    className="object-cover object-top grayscale hover:scale-105 transition-transform duration-500"
+                    className="object-cover grayscale hover:scale-105 transition-transform duration-500"
                   />
                   <AvatarFallback className="rounded-xl bg-darkgray text-4xl text-orange">JW</AvatarFallback>
                 </Avatar>
               </div>
               
+              {/* Tech decorations */}
               <div className="absolute -bottom-6 -right-6 w-24 h-24 border-2 border-dashed border-orange/50 rounded-xl animate-[spin_15s_linear_infinite]"></div>
               <div className="absolute -top-6 -left-6 w-16 h-16 border border-orange/30 rounded-xl animate-[spin_12s_linear_infinite_reverse]"></div>
             </div>
