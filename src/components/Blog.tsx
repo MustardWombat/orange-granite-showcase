@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from 'react';
 import { Calendar, ArrowRight, X } from 'lucide-react';
 import { Dialog, DialogContent, DialogOverlay } from '@/components/ui/dialog';
@@ -9,7 +8,7 @@ const blogData = [
     date: "February 10, 2025",
     title: "Understanding Blockchain Fundamentals",
     description: "A beginner's guide to understanding blockchain technology, encryption methods, and how to build a simple simulator.",
-    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5",
+    image: "/lovable-uploads/b9506242-ade4-45c3-8b75-dc1ba3d9de63.png",
     content: "Blockchain technology represents one of the most significant technological advancements in recent years. At its core, a blockchain is a distributed ledger that maintains a continuously growing list of records called blocks, which are linked using cryptography. Each block contains a cryptographic hash of the previous block, a timestamp, and transaction data.\n\nUnderstanding the fundamentals of blockchain begins with grasping its key components: decentralization, transparency, immutability, and security. Unlike traditional centralized systems, blockchain operates on a peer-to-peer network where no single entity has control over the entire chain.\n\nIn this article, I'll walk through the basic concepts of blockchain technology, explain different consensus mechanisms like Proof of Work and Proof of Stake, and provide a simple code example to build your own blockchain simulator using Python."
   },
   {
@@ -17,7 +16,7 @@ const blogData = [
     date: "January 15, 2025",
     title: "Getting Started with SwiftUI",
     description: "My journey learning Swift and SwiftUI for iOS app development, with insights from the Cosmos Study App project.",
-    image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
+    image: "/lovable-uploads/b9506242-ade4-45c3-8b75-dc1ba3d9de63.png",
     content: "SwiftUI has revolutionized the way developers create user interfaces for Apple platforms. As someone who recently dove into iOS development for my Cosmos Study App project, I want to share my experience learning SwiftUI and some practical tips for beginners.\n\nSwiftUI is a declarative framework that allows you to build user interfaces across all Apple platforms with a unified set of tools and APIs. The learning curve might seem steep at first, especially if you're coming from UIKit or other frameworks, but the productivity gains are substantial once you get comfortable with it.\n\nIn this article, I'll walk through setting up your first SwiftUI project, explain the basics of view composition, state management, and demonstrate how to create custom reusable components. I'll also share some challenges I faced when implementing the AI-powered features in my Cosmos Study App and how I overcame them."
   },
   {
@@ -25,7 +24,7 @@ const blogData = [
     date: "December 22, 2024",
     title: "Robotics Programming Fundamentals",
     description: "Lessons learned from FRC Team 815 and practical approaches to programming autonomous robot control systems.",
-    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e",
+    image: "/lovable-uploads/b9506242-ade4-45c3-8b75-dc1ba3d9de63.png",
     content: "Programming autonomous robots presents unique challenges that blend hardware integration, sensor fusion, and real-time decision making. During my time as Lead Programmer with FRC Team 815, I had the opportunity to develop control systems for competition robots, which taught me valuable lessons about robotics programming fundamentals.\n\nEffective robot programming begins with understanding the hardware components and their limitations. Motors, sensors, actuators, and processors all have specific capabilities and constraints that influence your code architecture. Beyond hardware, a solid grasp of control theory concepts like PID controllers is essential for precise movement and positioning.\n\nIn this article, I'll share practical techniques for structuring robot code, implementing sensor fusion algorithms, and developing autonomous behaviors. I'll also discuss the importance of simulation and testing methodologies that helped our team create reliable robot control systems under the pressure of competition deadlines."
   }
 ];
@@ -84,7 +83,7 @@ const Blog = () => {
                   className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
-                    target.style.display = 'none';
+                    target.src = "/lovable-uploads/b9506242-ade4-45c3-8b75-dc1ba3d9de63.png";
                   }}
                 />
               </div>
@@ -113,7 +112,6 @@ const Blog = () => {
         </div>
       </div>
 
-      {/* Modal using shadcn Dialog */}
       <Dialog open={modalOpen} onOpenChange={setModalOpen}>
         <DialogOverlay className="bg-black/80" />
         <DialogContent className="max-w-5xl w-[90vw] h-[90vh] p-0 bg-granite border border-gray-700 overflow-y-auto">
@@ -137,7 +135,7 @@ const Blog = () => {
                 className="w-full h-auto max-h-[50vh] object-cover rounded-lg mb-4"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
-                  target.style.display = 'none';
+                  target.src = "/lovable-uploads/b9506242-ade4-45c3-8b75-dc1ba3d9de63.png";
                 }}
               />
             </div>
