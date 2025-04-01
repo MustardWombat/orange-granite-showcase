@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { Github as GithubIcon, ExternalLink, Star, GitFork, Code, Terminal } from 'lucide-react';
 import { Skeleton } from './ui/skeleton';
@@ -26,6 +25,7 @@ interface GithubRepo {
 interface GithubContribution {
   date: string;
   count: number;
+  fetchFailed?: boolean;
 }
 
 // GitHub username to fetch data for
@@ -155,35 +155,7 @@ const Github = () => {
         console.error('Error fetching GitHub data:', err);
         setError('Unable to fetch GitHub data. GitHub API rate limit may have been exceeded.');
         
-        // Fallback data in case of error
-        setCommits([
-          {
-            sha: '1',
-            commit: {
-              message: 'Updated Neural Database schema optimization',
-              author: { date: '2024-02-15T12:00:00Z' }
-            },
-            html_url: 'https://github.com/MustardWombat'
-          },
-          {
-            sha: '2',
-            commit: {
-              message: 'Fixed robot arm inverse kinematics calculation',
-              author: { date: '2024-02-10T14:30:00Z' }
-            },
-            html_url: 'https://github.com/MustardWombat'
-          },
-          {
-            sha: '3',
-            commit: {
-              message: 'Added image recognition module to COSMOS',
-              author: { date: '2024-02-05T09:15:00Z' }
-            },
-            html_url: 'https://github.com/MustardWombat'
-          }
-        ]);
-        
-        // Generate fallback contribution data
+        // Generate fallback contribution data with a flag to indicate fetch failure
         const today = new Date();
         const fallbackContributions: GithubContribution[] = [];
         
@@ -193,7 +165,8 @@ const Github = () => {
           
           fallbackContributions.push({
             date: date.toISOString().split('T')[0],
-            count: Math.floor(Math.random() * 4)
+            count: 0,  // Set count to 0 to trigger grey color
+            fetchFailed: true  // Add a flag to indicate fetch failure
           });
         }
         
@@ -236,7 +209,11 @@ const Github = () => {
     return colors[language || ''] || 'bg-gray-400';
   };
   
-  const getContributionColor = (count: number) => {
+  // Update getContributionColor to handle fetch failure
+  const getContributionColor = (contribution: GithubContribution) => {
+    if (contribution.fetchFailed) return 'bg-gray-700';  // Grey color for failed fetch
+    
+    const { count } = contribution;
     if (count === 0) return 'bg-darkgray';
     if (count === 1) return 'bg-orange/30';
     if (count === 2) return 'bg-orange/50';
@@ -274,8 +251,8 @@ const Github = () => {
               contributions.map((day, index) => (
                 <div 
                   key={index} 
-                  className={`h-4 rounded ${getContributionColor(day.count)}`}
-                  title={`${day.date}: ${day.count} contributions`}
+                  className={`h-4 rounded ${getContributionColor(day)}`}
+                  title={`${day.date}: ${day.count || 'No'} contributions`}
                 ></div>
               ))
             )}
