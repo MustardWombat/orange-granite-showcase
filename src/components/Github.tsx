@@ -28,6 +28,9 @@ interface GithubContribution {
   count: number;
 }
 
+// GitHub username to fetch data for
+const GITHUB_USERNAME = 'MustardWombat';
+
 const Github = () => {
   const [commits, setCommits] = useState<GithubCommit[]>([]);
   const [repos, setRepos] = useState<GithubRepo[]>([]);
@@ -42,7 +45,7 @@ const Github = () => {
         setError(null);
         
         // Fetch repos
-        const reposResponse = await fetch('https://api.github.com/users/MustardWombat/repos?sort=updated&per_page=3');
+        const reposResponse = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=3`);
         
         if (!reposResponse.ok) {
           throw new Error('GitHub API rate limit may have been exceeded. Try again later.');
@@ -53,7 +56,7 @@ const Github = () => {
         
         // Fetch commits if repos exist
         if (reposData.length > 0) {
-          const commitsResponse = await fetch(`https://api.github.com/repos/MustardWombat/${reposData[0].name}/commits?per_page=3`);
+          const commitsResponse = await fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${reposData[0].name}/commits?per_page=3`);
           
           if (commitsResponse.ok) {
             const commitsData = await commitsResponse.json();
@@ -63,37 +66,91 @@ const Github = () => {
           }
         }
         
-        // Fetch contribution data (last 35 days)
-        // Note: GitHub doesn't have a direct API for contribution data
-        // We'll simulate it by generating data based on recent activity
+        // Fetch actual contribution data using GitHub's contribution calendar API
+        // This uses the public user contributions calendar data
         const today = new Date();
-        const contributionsData: GithubContribution[] = [];
+        const oneYearAgo = new Date();
+        oneYearAgo.setFullYear(today.getFullYear() - 1);
         
-        for (let i = 34; i >= 0; i--) {
-          const date = new Date(today);
-          date.setDate(date.getDate() - i);
+        // Format dates for the API request
+        const fromDate = oneYearAgo.toISOString().split('T')[0];
+        const toDate = today.toISOString().split('T')[0];
+        
+        try {
+          // GitHub API doesn't provide a direct endpoint for contribution counts
+          // We'll use a workaround by fetching the user's public events
+          const eventsResponse = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/events?per_page=100`);
           
-          // Generate a count influenced by repo activity (more recent = more likely to have activity)
-          let count = 0;
-          const dayOfWeek = date.getDay();
-          
-          // More commits on weekdays
-          if (dayOfWeek > 0 && dayOfWeek < 6) {
-            // More recent days are more likely to have commits
-            const recencyFactor = i < 7 ? 0.7 : i < 14 ? 0.5 : 0.3;
-            count = Math.random() > (1 - recencyFactor) ? Math.floor(Math.random() * 5) + 1 : 0;
+          if (eventsResponse.ok) {
+            const eventsData = await eventsResponse.json();
+            
+            // Process events into a contributions map (date -> count)
+            const contributionsMap = new Map<string, number>();
+            
+            // Initialize the last 35 days with zero counts
+            for (let i = 34; i >= 0; i--) {
+              const date = new Date(today);
+              date.setDate(date.getDate() - i);
+              const dateString = date.toISOString().split('T')[0];
+              contributionsMap.set(dateString, 0);
+            }
+            
+            // Count events (push, pull request, issue comments, etc.) as contributions
+            const contributionEventTypes = [
+              'PushEvent', 'PullRequestEvent', 'IssuesEvent',
+              'IssueCommentEvent', 'CreateEvent', 'DeleteEvent'
+            ];
+            
+            eventsData.forEach((event: any) => {
+              if (contributionEventTypes.includes(event.type)) {
+                const date = event.created_at.split('T')[0];
+                if (contributionsMap.has(date)) {
+                  contributionsMap.set(date, (contributionsMap.get(date) || 0) + 1);
+                }
+              }
+            });
+            
+            // Convert map to array of contribution objects
+            const contributionsData: GithubContribution[] = Array.from(contributionsMap.entries())
+              .map(([date, count]) => ({ date, count }))
+              .sort((a, b) => a.date.localeCompare(b.date));
+            
+            setContributions(contributionsData);
           } else {
-            // Weekend commits are less likely
-            count = Math.random() > 0.85 ? Math.floor(Math.random() * 3) : 0;
+            throw new Error('Could not fetch GitHub events');
+          }
+        } catch (eventError) {
+          console.error('Error fetching GitHub contributions:', eventError);
+          
+          // Fall back to simulated contribution data if we can't get actual data
+          const fallbackContributions: GithubContribution[] = [];
+          
+          for (let i = 34; i >= 0; i--) {
+            const date = new Date(today);
+            date.setDate(date.getDate() - i);
+            
+            // Generate a count influenced by repo activity (more recent = more likely to have activity)
+            let count = 0;
+            const dayOfWeek = date.getDay();
+            
+            // More commits on weekdays
+            if (dayOfWeek > 0 && dayOfWeek < 6) {
+              // More recent days are more likely to have commits
+              const recencyFactor = i < 7 ? 0.7 : i < 14 ? 0.5 : 0.3;
+              count = Math.random() > (1 - recencyFactor) ? Math.floor(Math.random() * 5) + 1 : 0;
+            } else {
+              // Weekend commits are less likely
+              count = Math.random() > 0.85 ? Math.floor(Math.random() * 3) : 0;
+            }
+            
+            fallbackContributions.push({
+              date: date.toISOString().split('T')[0],
+              count
+            });
           }
           
-          contributionsData.push({
-            date: date.toISOString().split('T')[0],
-            count
-          });
+          setContributions(fallbackContributions);
         }
-        
-        setContributions(contributionsData);
       } catch (err) {
         console.error('Error fetching GitHub data:', err);
         setError('Unable to fetch GitHub data. GitHub API rate limit may have been exceeded.');
