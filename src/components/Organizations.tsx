@@ -8,7 +8,7 @@ const orgsData = [
     id: "org1",
     title: "Precision Agriculture Robotics Club",
     description: "Perception and Navigation team member collaborating to create autonomously controlled robots using Python, C++, and microcontrollers.",
-    image: "/lovable-uploads/b9506242-ade4-45c3-8b75-dc1ba3d9de63.png",
+    image: "/lovable-uploads/a3069536-1c03-407a-8506-c59257b4b263.png",
     content: "As a member of the Perception and Navigation team within the Precision Agriculture Robotics Club, I've been instrumental in developing systems that allow robots to sense their environment and navigate autonomously through agricultural fields.\n\nOur team focuses on integrating computer vision with sensor data to create reliable navigation systems that can operate in the challenging and variable conditions of agricultural environments. Using technologies like LiDAR, RGB-D cameras, and various environmental sensors, we've developed algorithms that enable robots to detect crop rows, identify obstacles, and make real-time navigation decisions.\n\nThrough this club, I've gained hands-on experience implementing cutting-edge robotics concepts using Python and C++ while working with platforms like ROS (Robot Operating System). This practical experience has deepened my understanding of sensor fusion, computer vision, and autonomous navigation techniques that are essential in modern robotics.",
     tags: ["Robotics", "Python", "Computer Vision", "ROS"]
   },
@@ -155,4 +155,3 @@ const Organizations = () => {
 };
 
 export default Organizations;
-
