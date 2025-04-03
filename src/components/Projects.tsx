@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Code, ExternalLink, Github, X } from 'lucide-react';
 import { Dialog, DialogContent, DialogOverlay } from '@/components/ui/dialog';
@@ -6,7 +7,7 @@ const projectsData = [
   {
     id: "project1",
     title: "Kinematic Vision Based Autonomous Robot",
-    image: "/lovable-uploads/b9506242-ade4-45c3-8b75-dc1ba3d9de63.png",
+    image: "/lovable-uploads/ef99b3a9-a1a1-4b39-bbe5-edc81b95400a.png",
     description: "A team and I started this project in September 2024. The goal was to create a robot that could recognize and differentiate between good and bad eggs, pick them up using a kinematic arm, and drop them off in a basket. This project is still a work in progress.",
     technologies: ["Python", "ROS2", "Computer Vision", "Robotics"],
     links: {
