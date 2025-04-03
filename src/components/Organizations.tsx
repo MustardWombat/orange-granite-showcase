@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Users, X } from 'lucide-react';
 import { Dialog, DialogContent, DialogOverlay } from '@/components/ui/dialog';
@@ -22,11 +21,11 @@ const orgsData = [
   },
   {
     id: "org3",
-    title: "Work Experience",
-    description: "Two years at Tim Hortons as Cashier/Closer, managing high-volume orders with accuracy and efficiency, increasing customer satisfaction by over 20%.",
+    title: "AI Club @ MSU",
+    description: "Active member participating in workshops and hackathons focused on machine learning and artificial intelligence applications. Collaborated on NLP projects and neural network implementations.",
     image: "/lovable-uploads/b9506242-ade4-45c3-8b75-dc1ba3d9de63.png",
-    content: "During my two years at Tim Hortons, I developed valuable skills in customer service, time management, and team collaboration that have proven transferable to my technical pursuits.\n\nAs a Cashier and Closer, I managed high-volume customer interactions during peak hours while maintaining accuracy and efficiency in order processing. This fast-paced environment taught me to prioritize tasks effectively, communicate clearly under pressure, and adapt quickly to changing conditions—skills that have proven invaluable in technical project management.\n\nMy responsibilities included reconciling daily transactions, managing inventory, and ensuring store cleanliness and readiness for the next business day. This role required attention to detail and systematic thinking, traits that translate directly to debugging code and building reliable systems.\n\nPerhaps most significantly, I implemented several process improvements that streamlined closing procedures and reduced closing time by approximately 30 minutes per shift. This initiative demonstrated my ability to analyze workflows, identify inefficiencies, and implement practical solutions—an approach I now apply to technical problem solving.",
-    tags: ["Customer Service", "Process Improvement", "Team Coordination"]
+    content: "As an active member of the AI Club at Michigan State University, I've immersed myself in a community dedicated to exploring and advancing artificial intelligence technologies.\n\nI regularly participate in workshops covering various AI domains including computer vision, natural language processing, and reinforcement learning. These sessions have provided hands-on experience with frameworks like TensorFlow and PyTorch, allowing me to implement and experiment with state-of-the-art models.\n\nOne of my key contributions was collaborating on a team project that developed a sentiment analysis system for campus feedback. We implemented a BERT-based model that achieved over 85% accuracy in classifying student feedback across multiple categories. This project enhanced my skills in NLP preprocessing, model fine-tuning, and deploying machine learning systems for real-world applications.\n\nThe club's hackathons and competition events have been particularly valuable, pushing me to apply theoretical knowledge to solve complex problems under time constraints. These experiences have strengthened my abilities in rapid prototyping, collaborative development, and presenting technical solutions to diverse audiences.",
+    tags: ["Machine Learning", "Python", "TensorFlow", "NLP"]
   }
 ];
 
