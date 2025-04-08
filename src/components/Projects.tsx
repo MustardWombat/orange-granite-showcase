@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Code, ExternalLink, Github, X } from 'lucide-react';
 import { Dialog, DialogContent, DialogOverlay } from '@/components/ui/dialog';
@@ -16,8 +17,8 @@ const projectsData = [
   },
   {
     id: "project2",
-    title: "COSMOS AI Powered Study App",
-    image: "/lovable-uploads/b9506242-ade4-45c3-8b75-dc1ba3d9de63.png",
+    title: "BitByte AI Powered Study App",
+    image: "/lovable-uploads/88c06ede-4b17-4bcb-9aa5-f46a0639e149.png",
     description: "A SwiftUI-based study timer application with gamified learning elements. Users can select or create study topics, track focused study time with a 25-minute Pomodoro timer, and earn rewards like planets and asteroids based on study duration. The app features a space theme with animations, persistent data storage, and a mining system that incentivizes consistent study habits.",
     technologies: ["SwiftUI", "iOS Development", "Educational Technology", "Gamification"],
     links: {
