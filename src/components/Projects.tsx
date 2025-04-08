@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Code, ExternalLink, Github, X } from 'lucide-react';
 import { Dialog, DialogContent, DialogOverlay } from '@/components/ui/dialog';
@@ -73,7 +72,7 @@ const Projects = () => {
               <img 
                 src={project.image} 
                 alt={project.title} 
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
                   target.src = "/lovable-uploads/b9506242-ade4-45c3-8b75-dc1ba3d9de63.png";
