@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Code, ExternalLink, Github, X } from 'lucide-react';
 import { Dialog, DialogContent, DialogOverlay } from '@/components/ui/dialog';
@@ -17,10 +16,10 @@ const projectsData = [
   },
   {
     id: "project2",
-    title: "BitByte AI Powered Study App",
+    title: "BitByteAI - Productivity Tracker",
     image: "/lovable-uploads/e59dbdb0-fec3-46be-8478-160313256af3.png",
-    description: "A SwiftUI-based study timer application with gamified learning elements. Users can select or create study topics, track focused study time with a 25-minute Pomodoro timer, and earn rewards like planets and asteroids based on study duration. The app features a space theme with animations, persistent data storage, and a mining system that incentivizes consistent study habits.",
-    technologies: ["SwiftUI", "iOS Development", "Educational Technology", "Gamification"],
+    description: "A data-driven productivity app that leverages machine learning to optimize user performance. Features include session tracking with detailed metrics, AI-powered notifications using custom ML models, anonymized data submission to a Flask-based API hosted on AWS for analysis, cross-platform support with SwiftUI for iOS and macOS integration, and privacy-focused local data storage with optional anonymized sharing.",
+    technologies: ["SwiftUI", "Machine Learning", "AWS", "Flask", "iOS/macOS Development"],
     links: {
       demo: "#",
       github: "#"
