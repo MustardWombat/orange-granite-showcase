@@ -24,17 +24,6 @@ const projectsData = [
       demo: "#",
       github: "#"
     }
-  },
-  {
-    id: "project3",
-    title: "Neural DataBase",
-    image: "/lovable-uploads/b9506242-ade4-45c3-8b75-dc1ba3d9de63.png",
-    description: "An AI-Enhanced SQL Engine for Intelligent Query Optimization and Database Management. This innovation combines neural network concepts with traditional database operations to create more efficient and intelligent data retrieval systems.",
-    technologies: ["Python", "SQL", "TensorFlow", "Docker"],
-    links: {
-      demo: "#",
-      github: "#"
-    }
   }
 ];
 
