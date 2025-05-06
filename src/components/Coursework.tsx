@@ -2,7 +2,6 @@
 import { useState } from 'react';
 import { BookOpen, ChevronDown, ChevronUp, Circle, CircleCheck } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 
@@ -17,117 +16,96 @@ interface Course {
   subject: string;
 }
 
-interface CourseCategory {
-  id: string;
-  name: string;
-  courses: Course[];
-}
-
-// Sample data for completed coursework
-const mathCourses: CourseCategory = {
-  id: "math",
-  name: "Mathematics",
-  courses: [
-    {
-      id: "calc1",
-      name: "Calculus I",
-      completed: true,
-      grade: "A",
-      credits: 4,
-      semester: "Fall 2024",
-      subject: "calculus"
-    },
-    {
-      id: "calc2",
-      name: "Calculus II",
-      completed: true,
-      grade: "A-",
-      credits: 4,
-      semester: "Spring 2025",
-      subject: "calculus"
-    },
-    {
-      id: "calc3",
-      name: "Calculus III",
-      completed: true,
-      grade: "B+",
-      credits: 4,
-      semester: "Fall 2025",
-      subject: "calculus"
-    },
-    {
-      id: "diffeq",
-      name: "Differential Equations",
-      completed: false,
-      credits: 3,
-      subject: "calculus"
-    }
-  ]
-};
-
-const courseCategories: CourseCategory[] = [
-  mathCourses,
+// Flatten all courses into a single array
+const allCourses: Course[] = [
+  // Mathematics courses
   {
-    id: "cs",
-    name: "Computer Science",
-    courses: [
-      {
-        id: "cs1",
-        name: "Introduction to Programming",
-        completed: true,
-        grade: "A",
-        credits: 3,
-        semester: "Fall 2024",
-        subject: "programming"
-      },
-      {
-        id: "cs2",
-        name: "Data Structures",
-        completed: false,
-        credits: 3,
-        subject: "programming"
-      }
-    ]
+    id: "calc1",
+    name: "Calculus I",
+    completed: true,
+    grade: "A",
+    credits: 4,
+    semester: "Fall 2024",
+    subject: "calculus"
   },
   {
-    id: "engineering",
-    name: "Engineering",
-    courses: [
-      {
-        id: "eng1",
-        name: "Digital Logic",
-        completed: true,
-        grade: "A-",
-        credits: 3,
-        semester: "Spring 2025",
-        subject: "physics"
-      },
-      {
-        id: "phys1",
-        name: "Physics I: Mechanics",
-        completed: false,
-        credits: 4,
-        subject: "physics"
-      }
-    ]
+    id: "calc2",
+    name: "Calculus II",
+    completed: true,
+    grade: "A-",
+    credits: 4,
+    semester: "Spring 2025",
+    subject: "calculus"
+  },
+  {
+    id: "calc3",
+    name: "Calculus III",
+    completed: true,
+    grade: "B+",
+    credits: 4,
+    semester: "Fall 2025",
+    subject: "calculus"
+  },
+  {
+    id: "diffeq",
+    name: "Differential Equations",
+    completed: false,
+    credits: 3,
+    subject: "calculus"
+  },
+  // Computer Science courses
+  {
+    id: "cs1",
+    name: "Introduction to Programming",
+    completed: true,
+    grade: "A",
+    credits: 3,
+    semester: "Fall 2024",
+    subject: "programming"
+  },
+  {
+    id: "cs2",
+    name: "Data Structures",
+    completed: false,
+    credits: 3,
+    subject: "programming"
+  },
+  // Engineering courses
+  {
+    id: "eng1",
+    name: "Digital Logic",
+    completed: true,
+    grade: "A-",
+    credits: 3,
+    semester: "Spring 2025",
+    subject: "physics"
+  },
+  {
+    id: "phys1",
+    name: "Physics I: Mechanics",
+    completed: false,
+    credits: 4,
+    subject: "physics"
   }
 ];
 
 const Coursework = () => {
-  const [openCategory, setOpenCategory] = useState("math");
+  const [coursesOpen, setCoursesOpen] = useState(true);
   const [activeSubject, setActiveSubject] = useState("all");
 
-  const toggleCategory = (categoryId: string) => {
-    setOpenCategory(openCategory === categoryId ? "" : categoryId);
-  };
-
   // Calculate total credits
-  const completedCredits = courseCategories.flatMap(cat => cat.courses)
+  const completedCredits = allCourses
     .filter(course => course.completed)
     .reduce((sum, course) => sum + course.credits, 0);
   
-  const totalCredits = courseCategories.flatMap(cat => cat.courses)
+  const totalCredits = allCourses
     .reduce((sum, course) => sum + course.credits, 0);
+
+  // Filter courses based on active subject
+  const filteredCourses = allCourses.filter(course => {
+    if (activeSubject === "all") return true;
+    return course.subject === activeSubject;
+  });
 
   return (
     <section id="coursework" className="py-20 section-animate">
@@ -140,113 +118,91 @@ const Coursework = () => {
       </div>
 
       <div className="mb-8">
-        <div className="bg-granite border border-gray-700 rounded-lg p-6 mb-6">
-          <div className="flex justify-between items-center mb-4">
-            <h3 className="text-xl font-bold">Academic Progress</h3>
-            <Badge variant="outline" className="text-orange border-orange">
-              {completedCredits} / {totalCredits} Credits Completed
-            </Badge>
-          </div>
-          
-          <div className="mb-6">
-            <div className="h-4 w-full bg-darkgray/50 rounded-full overflow-hidden">
-              <div 
-                className="h-full bg-orange transition-all duration-500 ease-in-out" 
-                style={{ width: `${(completedCredits / totalCredits) * 100}%` }}
-              ></div>
+        <Collapsible 
+          open={coursesOpen} 
+          onOpenChange={setCoursesOpen}
+          className="mb-4"
+        >
+          <CollapsibleTrigger className="w-full">
+            <div className="flex justify-between items-center p-6 bg-granite border border-gray-700 rounded-lg hover:border-orange/50 transition-all duration-300">
+              <div className="flex items-center">
+                <h3 className="text-xl font-bold">Academic Progress</h3>
+                <Badge className="ml-3 bg-darkgray/70 text-orange">
+                  {completedCredits} / {totalCredits} Credits
+                </Badge>
+              </div>
+              {coursesOpen ? (
+                <ChevronUp className="text-orange" />
+              ) : (
+                <ChevronDown className="text-orange" />
+              )}
             </div>
-          </div>
+          </CollapsibleTrigger>
           
-          <div className="w-full">
-            <ToggleGroup 
-              type="single" 
-              value={activeSubject}
-              onValueChange={(value) => value && setActiveSubject(value)}
-              className="justify-start bg-darkgray/50 p-1 rounded-md w-full"
-            >
-              <ToggleGroupItem value="all" className="flex-1 data-[state=on]:bg-orange/20 data-[state=on]:text-orange">
-                All Courses
-              </ToggleGroupItem>
-              <ToggleGroupItem value="calculus" className="flex-1 data-[state=on]:bg-orange/20 data-[state=on]:text-orange">
-                Calculus
-              </ToggleGroupItem>
-              <ToggleGroupItem value="physics" className="flex-1 data-[state=on]:bg-orange/20 data-[state=on]:text-orange">
-                Physics
-              </ToggleGroupItem>
-              <ToggleGroupItem value="programming" className="flex-1 data-[state=on]:bg-orange/20 data-[state=on]:text-orange">
-                Programming
-              </ToggleGroupItem>
-            </ToggleGroup>
-          </div>
-        </div>
-
-        {courseCategories.map((category) => {
-          // Filter courses based on active subject
-          const filteredCourses = category.courses.filter(course => {
-            if (activeSubject === "all") return true;
-            return course.subject === activeSubject;
-          });
-          
-          if (filteredCourses.length === 0) return null;
-          
-          return (
-            <Collapsible 
-              key={category.id}
-              open={openCategory === category.id} 
-              onOpenChange={() => toggleCategory(category.id)}
-              className="mb-4"
-            >
-              <CollapsibleTrigger className="w-full">
-                <div className="flex justify-between items-center p-6 bg-granite border border-gray-700 rounded-lg hover:border-orange/50 transition-all duration-300">
-                  <div className="flex items-center">
-                    <h3 className="text-xl font-bold">{category.name}</h3>
-                    <Badge className="ml-3 bg-darkgray/70 text-orange">
-                      {category.courses.filter(c => c.completed).length} / {category.courses.length}
-                    </Badge>
-                  </div>
-                  {openCategory === category.id ? (
-                    <ChevronUp className="text-orange" />
-                  ) : (
-                    <ChevronDown className="text-orange" />
-                  )}
+          <CollapsibleContent>
+            <div className="bg-darkgray/30 border border-gray-700 border-t-0 rounded-b-lg p-6">
+              <div className="mb-6">
+                <div className="h-4 w-full bg-darkgray/50 rounded-full overflow-hidden">
+                  <div 
+                    className="h-full bg-orange transition-all duration-500 ease-in-out" 
+                    style={{ width: `${(completedCredits / totalCredits) * 100}%` }}
+                  ></div>
                 </div>
-              </CollapsibleTrigger>
+              </div>
               
-              <CollapsibleContent>
-                <div className="bg-darkgray/30 border border-gray-700 border-t-0 rounded-b-lg p-6">
-                  <table className="w-full">
-                    <thead>
-                      <tr className="border-b border-gray-700">
-                        <th className="py-3 px-4 text-left">Status</th>
-                        <th className="py-3 px-4 text-left">Course Name</th>
-                        <th className="py-3 px-4 text-left">Credits</th>
-                        <th className="py-3 px-4 text-left">Grade</th>
-                        <th className="py-3 px-4 text-left">Semester</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {filteredCourses.map((course) => (
-                        <tr key={course.id} className="border-b border-gray-700/50">
-                          <td className="py-3 px-4">
-                            {course.completed ? (
-                              <CircleCheck className="text-green-500" />
-                            ) : (
-                              <Circle className="text-gray-500" />
-                            )}
-                          </td>
-                          <td className="py-3 px-4 font-medium">{course.name}</td>
-                          <td className="py-3 px-4">{course.credits}</td>
-                          <td className="py-3 px-4">{course.completed ? course.grade : "-"}</td>
-                          <td className="py-3 px-4">{course.semester || "Upcoming"}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </CollapsibleContent>
-            </Collapsible>
-          );
-        })}
+              <div className="w-full mb-6">
+                <ToggleGroup 
+                  type="single" 
+                  value={activeSubject}
+                  onValueChange={(value) => value && setActiveSubject(value)}
+                  className="justify-start bg-darkgray/50 p-1 rounded-md w-full"
+                >
+                  <ToggleGroupItem value="all" className="flex-1 data-[state=on]:bg-orange/20 data-[state=on]:text-orange">
+                    All Courses
+                  </ToggleGroupItem>
+                  <ToggleGroupItem value="calculus" className="flex-1 data-[state=on]:bg-orange/20 data-[state=on]:text-orange">
+                    Calculus
+                  </ToggleGroupItem>
+                  <ToggleGroupItem value="physics" className="flex-1 data-[state=on]:bg-orange/20 data-[state=on]:text-orange">
+                    Physics
+                  </ToggleGroupItem>
+                  <ToggleGroupItem value="programming" className="flex-1 data-[state=on]:bg-orange/20 data-[state=on]:text-orange">
+                    Programming
+                  </ToggleGroupItem>
+                </ToggleGroup>
+              </div>
+              
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-gray-700">
+                    <th className="py-3 px-4 text-left">Status</th>
+                    <th className="py-3 px-4 text-left">Course Name</th>
+                    <th className="py-3 px-4 text-left">Credits</th>
+                    <th className="py-3 px-4 text-left">Grade</th>
+                    <th className="py-3 px-4 text-left">Semester</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredCourses.map((course) => (
+                    <tr key={course.id} className="border-b border-gray-700/50">
+                      <td className="py-3 px-4">
+                        {course.completed ? (
+                          <CircleCheck className="text-green-500" />
+                        ) : (
+                          <Circle className="text-gray-500" />
+                        )}
+                      </td>
+                      <td className="py-3 px-4 font-medium">{course.name}</td>
+                      <td className="py-3 px-4">{course.credits}</td>
+                      <td className="py-3 px-4">{course.completed ? course.grade : "-"}</td>
+                      <td className="py-3 px-4">{course.semester || "Upcoming"}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </CollapsibleContent>
+        </Collapsible>
       </div>
     </section>
   );
