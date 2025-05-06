@@ -4,7 +4,7 @@ import { BookOpen, ChevronDown, ChevronUp, Circle, CircleCheck } from 'lucide-re
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 
 // Types for course data
 interface Course {
@@ -14,6 +14,7 @@ interface Course {
   grade?: string;
   credits: number;
   semester?: string;
+  subject: string;
 }
 
 interface CourseCategory {
@@ -33,7 +34,8 @@ const mathCourses: CourseCategory = {
       completed: true,
       grade: "A",
       credits: 4,
-      semester: "Fall 2024"
+      semester: "Fall 2024",
+      subject: "calculus"
     },
     {
       id: "calc2",
@@ -41,7 +43,8 @@ const mathCourses: CourseCategory = {
       completed: true,
       grade: "A-",
       credits: 4,
-      semester: "Spring 2025"
+      semester: "Spring 2025",
+      subject: "calculus"
     },
     {
       id: "calc3",
@@ -49,13 +52,15 @@ const mathCourses: CourseCategory = {
       completed: true,
       grade: "B+",
       credits: 4,
-      semester: "Fall 2025"
+      semester: "Fall 2025",
+      subject: "calculus"
     },
     {
       id: "diffeq",
       name: "Differential Equations",
       completed: false,
-      credits: 3
+      credits: 3,
+      subject: "calculus"
     }
   ]
 };
@@ -72,13 +77,15 @@ const courseCategories: CourseCategory[] = [
         completed: true,
         grade: "A",
         credits: 3,
-        semester: "Fall 2024"
+        semester: "Fall 2024",
+        subject: "programming"
       },
       {
         id: "cs2",
         name: "Data Structures",
         completed: false,
-        credits: 3
+        credits: 3,
+        subject: "programming"
       }
     ]
   },
@@ -92,7 +99,15 @@ const courseCategories: CourseCategory[] = [
         completed: true,
         grade: "A-",
         credits: 3,
-        semester: "Spring 2025"
+        semester: "Spring 2025",
+        subject: "physics"
+      },
+      {
+        id: "phys1",
+        name: "Physics I: Mechanics",
+        completed: false,
+        credits: 4,
+        subject: "physics"
       }
     ]
   }
@@ -100,7 +115,7 @@ const courseCategories: CourseCategory[] = [
 
 const Coursework = () => {
   const [openCategory, setOpenCategory] = useState("math");
-  const [activeTab, setActiveTab] = useState("all");
+  const [activeSubject, setActiveSubject] = useState("all");
 
   const toggleCategory = (categoryId: string) => {
     setOpenCategory(openCategory === categoryId ? "" : categoryId);
@@ -142,27 +157,34 @@ const Coursework = () => {
             </div>
           </div>
           
-          <Tabs 
-            defaultValue="all" 
-            value={activeTab} 
-            onValueChange={setActiveTab}
-            className="w-full"
-          >
-            <TabsList className="w-full bg-darkgray/50">
-              <TabsTrigger value="all" className="flex-1">All Courses</TabsTrigger>
-              <TabsTrigger value="completed" className="flex-1">Completed</TabsTrigger>
-              <TabsTrigger value="inprogress" className="flex-1">In Progress</TabsTrigger>
-            </TabsList>
-          </Tabs>
+          <div className="w-full">
+            <ToggleGroup 
+              type="single" 
+              value={activeSubject}
+              onValueChange={(value) => value && setActiveSubject(value)}
+              className="justify-start bg-darkgray/50 p-1 rounded-md w-full"
+            >
+              <ToggleGroupItem value="all" className="flex-1 data-[state=on]:bg-orange/20 data-[state=on]:text-orange">
+                All Courses
+              </ToggleGroupItem>
+              <ToggleGroupItem value="calculus" className="flex-1 data-[state=on]:bg-orange/20 data-[state=on]:text-orange">
+                Calculus
+              </ToggleGroupItem>
+              <ToggleGroupItem value="physics" className="flex-1 data-[state=on]:bg-orange/20 data-[state=on]:text-orange">
+                Physics
+              </ToggleGroupItem>
+              <ToggleGroupItem value="programming" className="flex-1 data-[state=on]:bg-orange/20 data-[state=on]:text-orange">
+                Programming
+              </ToggleGroupItem>
+            </ToggleGroup>
+          </div>
         </div>
 
         {courseCategories.map((category) => {
-          // Filter courses based on active tab
+          // Filter courses based on active subject
           const filteredCourses = category.courses.filter(course => {
-            if (activeTab === "all") return true;
-            if (activeTab === "completed") return course.completed;
-            if (activeTab === "inprogress") return !course.completed;
-            return true;
+            if (activeSubject === "all") return true;
+            return course.subject === activeSubject;
           });
           
           if (filteredCourses.length === 0) return null;
