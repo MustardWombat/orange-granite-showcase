@@ -65,6 +65,12 @@ const allCourses: Course[] = [
     semester: "Spring 2025",
     subject: "programming"
   },
+  {
+    id: "dsa",
+    name: "Data Structures and Algorithms",
+    completed: false,
+    subject: "programming"
+  },
   // Physics courses
   {
     id: "phys1",
