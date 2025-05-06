@@ -56,7 +56,7 @@ const allCourses: Course[] = [
   // Computer Science courses
   {
     id: "cs1",
-    name: "Introduction to Programming",
+    name: "Introduction to Programming I",
     completed: true,
     grade: "A",
     credits: 3,
@@ -65,7 +65,7 @@ const allCourses: Course[] = [
   },
   {
     id: "cs2",
-    name: "Data Structures",
+    name: "Introduction to Programming II",
     completed: false,
     credits: 3,
     subject: "programming"
