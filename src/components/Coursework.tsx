@@ -66,8 +66,10 @@ const allCourses: Course[] = [
   {
     id: "cs2",
     name: "Introduction to Programming II",
-    completed: false,
+    completed: true,
+    grade: "B",
     credits: 3,
+    semester: "Spring 2025",
     subject: "programming"
   },
   // Engineering courses
