@@ -11,7 +11,6 @@ import Github from '@/components/Github';
 import Experience from '@/components/Experience';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
-import Blog from '@/components/Blog';
 import Coursework from '@/components/Coursework';
 
 const Index = () => {
@@ -54,7 +53,6 @@ const Index = () => {
         <Education />
         <Coursework />
         <Organizations />
-        <Blog />
         <Github />
         <Contact />
       </div>
