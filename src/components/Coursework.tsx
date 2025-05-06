@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { BookOpen, ChevronDown, ChevronUp, Circle, CircleCheck } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
@@ -10,7 +11,6 @@ interface Course {
   name: string;
   completed: boolean;
   grade?: string;
-  credits: number;
   semester?: string;
   subject: string;
 }
@@ -23,7 +23,6 @@ const allCourses: Course[] = [
     name: "Calculus I",
     completed: true,
     grade: "A",
-    credits: 4,
     semester: "Fall 2024",
     subject: "calculus"
   },
@@ -31,8 +30,7 @@ const allCourses: Course[] = [
     id: "calc2",
     name: "Calculus II",
     completed: true,
-    grade: "A-",
-    credits: 4,
+    grade: "C",
     semester: "Spring 2025",
     subject: "calculus"
   },
@@ -40,16 +38,14 @@ const allCourses: Course[] = [
     id: "calc3",
     name: "Calculus III",
     completed: true,
-    grade: "B+",
-    credits: 4,
-    semester: "Fall 2025",
+    grade: "A",
+    semester: "Summer 2025",
     subject: "calculus"
   },
   {
     id: "diffeq",
     name: "Differential Equations",
     completed: false,
-    credits: 3,
     subject: "calculus"
   },
   // Computer Science courses
@@ -58,7 +54,6 @@ const allCourses: Course[] = [
     name: "Introduction to Programming I",
     completed: true,
     grade: "A",
-    credits: 3,
     semester: "Fall 2024",
     subject: "programming"
   },
@@ -67,16 +62,14 @@ const allCourses: Course[] = [
     name: "Introduction to Programming II",
     completed: true,
     grade: "B",
-    credits: 3,
     semester: "Spring 2025",
     subject: "programming"
   },
   // Physics courses
   {
     id: "phys1",
-    name: "Physics I: Mechanics",
+    name: "Physics I",
     completed: false,
-    credits: 4,
     subject: "physics"
   }
 ];
@@ -85,13 +78,12 @@ const Coursework = () => {
   const [coursesOpen, setCoursesOpen] = useState(true);
   const [activeSubject, setActiveSubject] = useState("all");
 
-  // Calculate total credits
-  const completedCredits = allCourses
+  // Calculate total courses completed
+  const completedCourses = allCourses
     .filter(course => course.completed)
-    .reduce((sum, course) => sum + course.credits, 0);
+    .length;
   
-  const totalCredits = allCourses
-    .reduce((sum, course) => sum + course.credits, 0);
+  const totalCourses = allCourses.length;
 
   // Filter courses based on active subject
   const filteredCourses = allCourses.filter(course => {
@@ -120,7 +112,7 @@ const Coursework = () => {
               <div className="flex items-center">
                 <h3 className="text-xl font-bold">Academic Progress</h3>
                 <Badge className="ml-3 bg-darkgray/70 text-orange">
-                  {completedCredits} / {totalCredits} Credits
+                  {completedCourses} / {totalCourses} Courses
                 </Badge>
               </div>
               {coursesOpen ? (
@@ -137,7 +129,7 @@ const Coursework = () => {
                 <div className="h-4 w-full bg-darkgray/50 rounded-full overflow-hidden">
                   <div 
                     className="h-full bg-orange transition-all duration-500 ease-in-out" 
-                    style={{ width: `${(completedCredits / totalCredits) * 100}%` }}
+                    style={{ width: `${(completedCourses / totalCourses) * 100}%` }}
                   ></div>
                 </div>
               </div>
@@ -169,7 +161,6 @@ const Coursework = () => {
                   <tr className="border-b border-gray-700">
                     <th className="py-3 px-4 text-left">Status</th>
                     <th className="py-3 px-4 text-left">Course Name</th>
-                    <th className="py-3 px-4 text-left">Credits</th>
                     <th className="py-3 px-4 text-left">Grade</th>
                     <th className="py-3 px-4 text-left">Semester</th>
                   </tr>
@@ -185,7 +176,6 @@ const Coursework = () => {
                         )}
                       </td>
                       <td className="py-3 px-4 font-medium">{course.name}</td>
-                      <td className="py-3 px-4">{course.credits}</td>
                       <td className="py-3 px-4">{course.completed ? course.grade : "-"}</td>
                       <td className="py-3 px-4">{course.semester || "Upcoming"}</td>
                     </tr>
