@@ -1,6 +1,5 @@
-
 import { useState } from 'react';
-import { BookOpen, ChevronDown, ChevronUp, Circle, CircleCheck, CircuitBoard, Sparkles } from 'lucide-react';
+import { BookOpen, ChevronDown, ChevronUp, Circle, CircleCheck } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { Badge } from '@/components/ui/badge';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
@@ -183,27 +182,21 @@ const Coursework = () => {
                 </thead>
                 <tbody>
                   {filteredCourses.map((course) => (
-                    <tr key={course.id} className="border-b border-gray-700/50">
+                    <tr key={course.id} className={`border-b border-gray-700/50 ${!course.completed ? "relative bg-gradient-to-r from-orange/5 via-orange/10 to-orange/5 animate-pulse" : ""}`}>
                       <td className="py-3 px-4">
                         {course.completed ? (
                           <CircleCheck className="text-green-500" />
                         ) : (
                           <div className="flex items-center">
                             <Circle className="text-gray-500" />
-                            <div className="relative ml-1">
-                              <div className="absolute -top-3 -left-1">
-                                <Sparkles className="text-orange h-4 w-4 animate-pulse" />
-                              </div>
-                              <div className="absolute w-20 h-10 bg-gradient-to-r from-orange/0 via-orange/20 to-orange/0 rounded-full blur-xl -top-5 -left-8 animate-pulse"></div>
-                            </div>
+                            <div className="h-5 w-2 bg-orange ml-1 animate-pulse"></div>
                           </div>
                         )}
                       </td>
                       <td className="py-3 px-4 font-medium">
                         {!course.completed ? (
-                          <div className="relative">
+                          <div className="text-orange-light">
                             {course.name}
-                            <div className="absolute inset-0 rounded-md bg-gradient-to-r from-orange/0 via-orange/5 to-orange/0 animate-pulse pointer-events-none"></div>
                           </div>
                         ) : (
                           course.name
@@ -214,7 +207,7 @@ const Coursework = () => {
                         {!course.completed ? (
                           <div className="relative">
                             <span className="text-orange-light font-medium">Currently Taking</span>
-                            <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-orange/0 via-orange/50 to-orange/0 rounded"></div>
+                            <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-orange/20 via-orange/80 to-orange/20 rounded animate-pulse"></div>
                           </div>
                         ) : (
                           course.semester
