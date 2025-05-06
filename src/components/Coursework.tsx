@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { BookOpen, ChevronDown, ChevronUp, Circle, CircleCheck } from 'lucide-react';
+import { BookOpen, ChevronDown, ChevronUp, Circle, CircleCheck, CircuitBoard } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { Badge } from '@/components/ui/badge';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
@@ -77,6 +77,13 @@ const allCourses: Course[] = [
     name: "Physics I",
     completed: false,
     subject: "physics"
+  },
+  // Circuits courses
+  {
+    id: "circuits1",
+    name: "Intro to Circuits I",
+    completed: false,
+    subject: "circuits"
   }
 ];
 
@@ -158,6 +165,9 @@ const Coursework = () => {
                   </ToggleGroupItem>
                   <ToggleGroupItem value="programming" className="flex-1 data-[state=on]:bg-orange/20 data-[state=on]:text-orange">
                     Programming
+                  </ToggleGroupItem>
+                  <ToggleGroupItem value="circuits" className="flex-1 data-[state=on]:bg-orange/20 data-[state=on]:text-orange">
+                    Circuits
                   </ToggleGroupItem>
                 </ToggleGroup>
               </div>
