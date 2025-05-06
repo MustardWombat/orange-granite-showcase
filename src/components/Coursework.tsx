@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { BookOpen, ChevronDown, ChevronUp, Circle, CircleCheck } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
@@ -72,16 +71,7 @@ const allCourses: Course[] = [
     semester: "Spring 2025",
     subject: "programming"
   },
-  // Engineering courses
-  {
-    id: "eng1",
-    name: "Digital Logic",
-    completed: true,
-    grade: "A-",
-    credits: 3,
-    semester: "Spring 2025",
-    subject: "physics"
-  },
+  // Physics courses
   {
     id: "phys1",
     name: "Physics I: Mechanics",
