@@ -9,40 +9,19 @@ const StartupAnimation = ({ onComplete }: { onComplete: () => void }) => {
     const timers = [
       setTimeout(() => setPhase(1), 500), // Logo appears
       setTimeout(() => setPhase(2), 1500), // Text appears
-      setTimeout(() => setPhase(3), 2500), // Particles spread
-      setTimeout(() => setPhase(4), 3500), // Fade out
-      setTimeout(onComplete, 4000), // Complete
+      setTimeout(() => setPhase(3), 3000), // Fade out
+      setTimeout(onComplete, 3500), // Complete
     ];
     
     return () => timers.forEach(clearTimeout);
   }, [onComplete]);
   
-  const particles = Array.from({ length: 20 }, (_, i) => i);
-  
   return (
     <div className={`fixed inset-0 z-[100] flex items-center justify-center bg-[#121212] transition-opacity duration-500 ${
-      phase === 4 ? 'opacity-0 pointer-events-none' : 'opacity-100'
+      phase === 3 ? 'opacity-0 pointer-events-none' : 'opacity-100'
     }`}>
       {/* Animated background grid */}
       <div className="absolute inset-0 bg-[url('/src/assets/grid-pattern.svg')] opacity-10 animate-pulse"></div>
-      
-      {/* Particles */}
-      <div className="absolute inset-0 overflow-hidden">
-        {particles.map((particle) => (
-          <div
-            key={particle}
-            className={`absolute w-1 h-1 bg-orange rounded-full transition-all duration-1000 ${
-              phase >= 3 ? 'opacity-100' : 'opacity-0'
-            }`}
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 2}s`,
-              animation: phase >= 3 ? 'float 3s ease-in-out infinite' : 'none',
-            }}
-          />
-        ))}
-      </div>
       
       {/* Main logo and text */}
       <div className="relative z-10 text-center">
