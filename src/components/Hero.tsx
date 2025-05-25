@@ -34,7 +34,10 @@ const Hero = () => {
   
   return (
     <section className="min-h-screen pt-28 relative z-10 flex items-center section-animate" id="home">
-      <div className="container mx-auto px-6">
+      {/* Grid background */}
+      <div className="absolute inset-0 bg-[url('/src/assets/grid-pattern.svg')] opacity-10 pointer-events-none"></div>
+      
+      <div className="container mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-7">
             <div className="flex flex-col items-start">
