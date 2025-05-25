@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import TechBar from '@/components/TechBar';
@@ -12,12 +12,8 @@ import Experience from '@/components/Experience';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import Coursework from '@/components/Coursework';
-import StartupAnimation from '@/components/StartupAnimation';
 
 const Index = () => {
-  const [showStartupAnimation, setShowStartupAnimation] = useState(true);
-  const [mainContentVisible, setMainContentVisible] = useState(false);
-
   useEffect(() => {
     // Intersection observer for animations
     const observer = new IntersectionObserver(
@@ -42,39 +38,26 @@ const Index = () => {
         observer.unobserve(section);
       });
     };
-  }, [mainContentVisible]);
-
-  const handleAnimationComplete = () => {
-    setShowStartupAnimation(false);
-    setMainContentVisible(true);
-  };
+  }, []);
 
   return (
-    <>
-      {showStartupAnimation && (
-        <StartupAnimation onComplete={handleAnimationComplete} />
-      )}
-      
-      <main className={`bg-[#121212] text-white overflow-x-hidden transition-opacity duration-500 ${
-        mainContentVisible ? 'opacity-100' : 'opacity-0'
-      }`}>
-        <div className="fixed w-full h-full top-0 left-0 bg-[url('/src/assets/grid-pattern.svg')] opacity-5 pointer-events-none z-0"></div>
-        <Header />
-        <Hero />
-        <TechBar />
-        <div className="container mx-auto px-4 z-10 relative">
-          <Projects />
-          <Skills />
-          <Experience />
-          <Education />
-          <Coursework />
-          <Organizations />
-          <Github />
-          <Contact />
-        </div>
-        <Footer />
-      </main>
-    </>
+    <main className="bg-[#121212] text-white overflow-x-hidden">
+      <div className="fixed w-full h-full top-0 left-0 bg-[url('/src/assets/grid-pattern.svg')] opacity-5 pointer-events-none z-0"></div>
+      <Header />
+      <Hero />
+      <TechBar />
+      <div className="container mx-auto px-4 z-10 relative">
+        <Projects />
+        <Skills />
+        <Experience />
+        <Education />
+        <Coursework />
+        <Organizations />
+        <Github />
+        <Contact />
+      </div>
+      <Footer />
+    </main>
   );
 };
 
