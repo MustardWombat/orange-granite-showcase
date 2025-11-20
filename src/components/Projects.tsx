@@ -5,6 +5,17 @@ import { Dialog, DialogContent, DialogOverlay } from '@/components/ui/dialog';
 const projectsData = [
   {
     id: "project1",
+    title: "Autonomous Tractor Autosteer System",
+    video: "/videos/tractor_autosteer.mp4",
+    description: "Developed an autonomous steering system for agricultural tractors using precision GPS and real-time path correction algorithms. This project showcases integration of mechatronics, precision agriculture, and autonomous vehicle control systems.",
+    technologies: ["Precision Agriculture", "GPS Navigation", "Autonomous Systems", "Mechatronics"],
+    links: {
+      demo: "#",
+      github: "#"
+    }
+  },
+  {
+    id: "project2",
     title: "Kinematic Vision Based Autonomous Robot",
     image: "/lovable-uploads/ef99b3a9-a1a1-4b39-bbe5-edc81b95400a.png",
     description: "A team and I started this project in September 2024. The goal was to create a robot that could recognize and differentiate between good and bad eggs, pick them up using a kinematic arm, and drop them off in a basket. This project is still a work in progress.",
@@ -15,7 +26,7 @@ const projectsData = [
     }
   },
   {
-    id: "project2",
+    id: "project3",
     title: "BitByteAI - Productivity Tracker",
     image: "/lovable-uploads/e59dbdb0-fec3-46be-8478-160313256af3.png",
     description: "A data-driven productivity app that leverages machine learning to optimize user performance. Features include session tracking with detailed metrics, AI-powered notifications using custom ML models, anonymized data submission to a Flask-based API hosted on AWS for analysis, cross-platform support with SwiftUI for iOS and macOS integration, and privacy-focused local data storage with optional anonymized sharing.",
@@ -58,15 +69,26 @@ const Projects = () => {
           >
             <div className="relative overflow-hidden rounded-t-lg h-48">
               <div className="absolute inset-0 bg-darkgray/50 group-hover:bg-darkgray/20 transition-all duration-300"></div>
-              <img 
-                src={project.image} 
-                alt={project.title} 
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.src = "/lovable-uploads/b9506242-ade4-45c3-8b75-dc1ba3d9de63.png";
-                }}
-              />
+              {project.video ? (
+                <video 
+                  src={project.video} 
+                  className="w-full h-full object-cover"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                />
+              ) : (
+                <img 
+                  src={project.image} 
+                  alt={project.title} 
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.src = "/lovable-uploads/b9506242-ade4-45c3-8b75-dc1ba3d9de63.png";
+                  }}
+                />
+              )}
             </div>
             
             <div className="p-6 bg-granite border border-gray-700 rounded-b-lg group-hover:border-orange/50 transition-all duration-300">
@@ -102,15 +124,26 @@ const Projects = () => {
           
           <div className="p-6">
             <div className="mb-6 rounded-lg overflow-hidden">
-              <img 
-                src={currentProject.image} 
-                alt={currentProject.title} 
-                className="w-full h-auto max-h-[50vh] object-cover"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.src = "/lovable-uploads/b9506242-ade4-45c3-8b75-dc1ba3d9de63.png";
-                }}
-              />
+              {currentProject.video ? (
+                <video 
+                  src={currentProject.video} 
+                  className="w-full h-auto max-h-[50vh] object-cover"
+                  controls
+                  autoPlay
+                  loop
+                  muted
+                />
+              ) : (
+                <img 
+                  src={currentProject.image} 
+                  alt={currentProject.title} 
+                  className="w-full h-auto max-h-[50vh] object-cover"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.src = "/lovable-uploads/b9506242-ade4-45c3-8b75-dc1ba3d9de63.png";
+                  }}
+                />
+              )}
             </div>
             
             <div className="mb-6">
