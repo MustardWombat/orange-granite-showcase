@@ -3,6 +3,15 @@ import { Briefcase, Calendar } from 'lucide-react';
 
 const experiences = [
   {
+    title: "Research Assistant",
+    company: "Smart Sensing Lab - Michigan State University",
+    period: "September 2024 - Present",
+    description: "Conducting research in precision agriculture and sensor systems under Dr. Morris. Developing and testing autonomous systems for agricultural applications, including data collection, analysis, and system optimization.",
+    skills: ["Research", "Data Analysis", "Sensor Systems", "Machine Learning", "Precision Agriculture"],
+    logo: "/lovable-uploads/baaeb034-088e-4755-b8f6-e58fa7d4e9e7.png",
+    link: "https://www.egr.msu.edu/bae/research/smart-sensing"
+  },
+  {
     title: "Cashier & Closer",
     company: "Tim Hortons",
     period: "June 2022 - Present",
@@ -65,6 +74,16 @@ const Experience = () => {
                 <div>
                   <h3 className="text-xl font-bold">{exp.title}</h3>
                   <p className="text-orange">{exp.company}</p>
+                  {exp.link && (
+                    <a 
+                      href={exp.link} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-teal hover:underline text-sm"
+                    >
+                      Visit Lab Website →
+                    </a>
+                  )}
                 </div>
               </div>
               
