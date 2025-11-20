@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { Code, Server, Cpu, Wrench, Award } from 'lucide-react';
+import { Code, Server, Cpu, Wrench } from 'lucide-react';
 
 const skillCategories = [
   {
@@ -17,11 +17,6 @@ const skillCategories = [
     icon: <Server className="w-6 h-6 text-orange" />,
     title: "Tools & Platforms",
     skills: ["VS Code", "AWS Tools", "Microsoft Excel", "Git/GitHub"]
-  },
-  {
-    icon: <Award className="w-6 h-6 text-orange" />,
-    title: "Certifications",
-    skills: ["CS50X from Harvard", "AWS Cloud Practitioner Essentials", "Microsoft Excel Advanced"]
   }
 ];
 
@@ -46,7 +41,7 @@ const Skills = () => {
         <div className="h-1 w-20 bg-orange"></div>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {skillCategories.map((category, index) => (
           <div 
             key={index} 
