@@ -49,11 +49,15 @@ const Hero = () => {
                 <span className="block text-orange mt-2">James Williams</span>
               </h1>
               
-              <div className="typewriter h-8 mb-6 flex items-center">
+              <div className="typewriter h-8 mb-2 flex items-center">
                 <span className="text-xl font-mono">&gt; {text}</span>
                 <span className={`h-5 w-2 bg-orange ml-1 ${showCursor ? 'opacity-100' : 'opacity-0'}`}></span>
               </div>
               
+              <p className="text-md text-gray-400 mb-6">
+                Computer Science Minor & Precision Agricultural Systems Minor
+              </p>
+
               <p className="text-xl text-gray-300 mb-8 max-w-2xl">
                 Passionate about finding solutions to complex problems through innovative design and development. 
                 <span className="block mt-2">
