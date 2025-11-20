@@ -2,11 +2,12 @@
 import { useEffect, useState } from 'react';
 import { ArrowRight, Github, Linkedin, Mail } from 'lucide-react';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
+import profileImage from '@/assets/profile.png';
 
 const Hero = () => {
   const [text, setText] = useState('');
   const [showCursor, setShowCursor] = useState(true);
-  const fullText = "Computer Engineering Student";
+  const fullText = "Technology Engineering | Mechatronics";
   
   useEffect(() => {
     let index = 0;
@@ -91,9 +92,9 @@ const Hero = () => {
               <div className="absolute inset-3 bg-darkgray rounded-xl flex items-center justify-center">
                 <Avatar className="w-[92%] h-[92%] rounded-xl">
                   <AvatarImage 
-                    src="/lovable-uploads/16a16a2a-dc5a-4361-a5ee-2d214624db5f.png"
+                    src={profileImage}
                     alt="James Williams"
-                    className="object-cover grayscale hover:scale-105 transition-transform duration-500"
+                    className="object-cover hover:scale-105 transition-transform duration-500"
                   />
                   <AvatarFallback className="rounded-xl bg-darkgray text-4xl text-orange">JW</AvatarFallback>
                 </Avatar>

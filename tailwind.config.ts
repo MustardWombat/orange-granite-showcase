@@ -62,14 +62,15 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-			granite: 'hsl(30 15% 92%)',
+			granite: 'hsl(218 16% 20%)',
 			orange: {
-				DEFAULT: 'hsl(25 85% 75%)',
-				light: 'hsl(25 80% 85%)',
-				dark: 'hsl(25 70% 65%)'
+				DEFAULT: 'hsl(25 100% 55%)',
+				light: 'hsl(39 100% 66%)',
+				dark: 'hsl(25 100% 55%)'
 			},
-			offwhite: 'hsl(0 0% 98%)',
-			darkgray: 'hsl(30 15% 88%)'
+			offwhite: 'hsl(0 0% 96%)',
+			darkgray: 'hsl(218 14% 34%)',
+			teal: 'hsl(176 63% 46%)'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

@@ -4,8 +4,8 @@ const educationData = [
   {
     id: 1,
     school: "Michigan State University",
-    degree: "Bachelors Computer Engineering",
-    details: ["GPA: 3.9", "Dean's List"],
+    degree: "Technology Engineering, Mechatronics Concentration",
+    details: ["Minor: Computer Science + Precision Agriculture Systems", "GPA: 3.9", "Dean's List"],
     period: "August 2024 - May 2028",
     logo: "/lovable-uploads/baaeb034-088e-4755-b8f6-e58fa7d4e9e7.png"
   },
