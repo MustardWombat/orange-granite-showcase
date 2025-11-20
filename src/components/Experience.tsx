@@ -9,7 +9,7 @@ const experiences = [
     description: "Conducting research in precision agriculture and sensor systems under Dr. Morris. Developing and testing autonomous systems for agricultural applications, including data collection, analysis, and system optimization.",
     skills: ["Research", "Data Analysis", "Sensor Systems", "Machine Learning", "Precision Agriculture"],
     logo: "/lovable-uploads/baaeb034-088e-4755-b8f6-e58fa7d4e9e7.png",
-    link: "https://www.egr.msu.edu/bae/research/smart-sensing"
+    link: "https://www.egr.msu.edu/smarts/index.html"
   },
   {
     title: "Cashier & Closer",
@@ -60,11 +60,11 @@ const Experience = () => {
               </div>
               
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-24 h-24 bg-white rounded-lg overflow-hidden flex items-center justify-center p-2">
+                <div className="w-20 h-20 bg-white rounded-lg overflow-hidden flex items-center justify-center p-2">
                   <img 
                     src={exp.logo} 
                     alt={`${exp.company} logo`} 
-                    className="w-full h-full object-contain"
+                    className={`w-full h-full object-contain ${exp.company.includes('Michigan State') ? 'scale-[1.5]' : ''}`}
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
                       target.src = "/lovable-uploads/b9506242-ade4-45c3-8b75-dc1ba3d9de63.png";
