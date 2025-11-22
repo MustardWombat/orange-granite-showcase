@@ -27,10 +27,10 @@ const projectsData = [
   },
   {
     id: "project3",
-    title: "BitByteAI - Productivity Tracker",
-    image: "/lovable-uploads/e59dbdb0-fec3-46be-8478-160313256af3.png",
-    description: "A data-driven productivity app that leverages machine learning to optimize user performance. Features include session tracking with detailed metrics, AI-powered notifications using custom ML models, anonymized data submission to a Flask-based API hosted on AWS for analysis, cross-platform support with SwiftUI for iOS and macOS integration, and privacy-focused local data storage with optional anonymized sharing.",
-    technologies: ["SwiftUI", "Machine Learning", "AWS", "Flask", "iOS/macOS Development"],
+    title: "Coming Soon",
+    image: "/lovable-uploads/b9506242-ade4-45c3-8b75-dc1ba3d9de63.png",
+    description: "More exciting projects are in development. Stay tuned for updates on innovative solutions in robotics, automation, and software engineering.",
+    technologies: ["Innovation", "Development", "Engineering"],
     links: {
       demo: "#",
       github: "#"
