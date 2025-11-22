@@ -17,7 +17,7 @@ const projectsData = [
   {
     id: "project2",
     title: "Kinematic Vision Based Autonomous Robot",
-    image: "/lovable-uploads/ef99b3a9-a1a1-4b39-bbe5-edc81b95400a.png",
+    video: "/videos/robot_vision.mov",
     description: "A team and I started this project in September 2024. The goal was to create a robot that could recognize and differentiate between good and bad eggs, pick them up using a kinematic arm, and drop them off in a basket. This project is still a work in progress.",
     technologies: ["Python", "ROS2", "Computer Vision", "Robotics"],
     links: {
