@@ -97,8 +97,8 @@ const Hero = () => {
             <div className="relative w-full max-w-sm aspect-square">
               <div className="absolute inset-0 bg-gradient-to-tr from-orange-dark via-orange to-orange-light rounded-xl blur-xl opacity-25 animate-pulse"></div>
               <div className="absolute inset-2 bg-gradient-to-tr from-orange-dark via-orange to-orange-light rounded-xl"></div>
-              <div className="absolute inset-3 bg-darkgray rounded-xl flex items-center justify-center">
-                <Avatar className="w-[92%] h-[92%] rounded-xl relative">
+              <div className="absolute inset-3 bg-darkgray rounded-xl flex items-center justify-center group">
+                <Avatar className="w-[92%] h-[92%] rounded-xl relative transition-opacity duration-500 group-hover:opacity-10">
                   <AvatarImage 
                     src={profileImage}
                     alt="James Williams"
