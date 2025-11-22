@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { ArrowRight, Github, Linkedin, Mail } from 'lucide-react';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import profileImage from '@/assets/profile.png';
+import BackgroundSlideshow from './BackgroundSlideshow';
 
 const Hero = () => {
   const [text, setText] = useState('');
@@ -35,10 +36,13 @@ const Hero = () => {
   
   return (
     <section className="min-h-screen pt-28 relative z-10 flex items-center section-animate" id="home">
-      {/* Grid background */}
-      <div className="absolute inset-0 bg-[url('/src/assets/grid-pattern.svg')] opacity-10 pointer-events-none"></div>
+      {/* Background slideshow */}
+      <BackgroundSlideshow />
       
-      <div className="container mx-auto px-6 relative z-10">
+      {/* Grid background */}
+      <div className="absolute inset-0 bg-[url('/src/assets/grid-pattern.svg')] opacity-10 pointer-events-none z-10"></div>
+      
+      <div className="container mx-auto px-6 relative z-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-7">
             <div className="flex flex-col items-start">
@@ -91,22 +95,16 @@ const Hero = () => {
           
           <div className="lg:col-span-5 flex justify-center">
             <div className="relative w-full max-w-sm aspect-square">
-              <div className="absolute inset-0 bg-gradient-to-tr from-orange-dark via-orange to-orange-light rounded-xl blur-xl opacity-25 animate-pulse"></div>
-              <div className="absolute inset-2 bg-gradient-to-tr from-orange-dark via-orange to-orange-light rounded-xl"></div>
-              <div className="absolute inset-3 bg-darkgray rounded-xl flex items-center justify-center">
-                <Avatar className="w-[92%] h-[92%] rounded-xl">
-                  <AvatarImage 
-                    src={profileImage}
-                    alt="James Williams"
-                    className="object-cover hover:scale-105 transition-transform duration-500"
-                  />
-                  <AvatarFallback className="rounded-xl bg-darkgray text-4xl text-orange">JW</AvatarFallback>
-                </Avatar>
-              </div>
-              
-              {/* Tech decorations */}
-              <div className="absolute -bottom-6 -right-6 w-24 h-24 border-2 border-dashed border-orange/50 rounded-xl animate-[spin_15s_linear_infinite]"></div>
-              <div className="absolute -top-6 -left-6 w-16 h-16 border border-orange/30 rounded-xl animate-[spin_12s_linear_infinite_reverse]"></div>
+              <Avatar className="w-full h-full rounded-xl relative">
+                <AvatarImage 
+                  src={profileImage}
+                  alt="James Williams"
+                  className="object-cover hover:scale-105 transition-transform duration-500"
+                />
+                <AvatarFallback className="rounded-xl bg-darkgray text-4xl text-orange">JW</AvatarFallback>
+                {/* Fade out effect at bottom */}
+                <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-black/90 via-black/50 to-transparent pointer-events-none"></div>
+              </Avatar>
             </div>
           </div>
         </div>
