@@ -95,16 +95,24 @@ const Hero = () => {
           
           <div className="lg:col-span-5 flex justify-center">
             <div className="relative w-full max-w-sm aspect-square">
-              <Avatar className="w-full h-full rounded-xl relative">
-                <AvatarImage 
-                  src={profileImage}
-                  alt="James Williams"
-                  className="object-cover hover:scale-105 transition-transform duration-500"
-                />
-                <AvatarFallback className="rounded-xl bg-darkgray text-4xl text-orange">JW</AvatarFallback>
-                {/* Fade out effect at bottom */}
-                <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-black/90 via-black/50 to-transparent pointer-events-none"></div>
-              </Avatar>
+              <div className="absolute inset-0 bg-gradient-to-tr from-orange-dark via-orange to-orange-light rounded-xl blur-xl opacity-25 animate-pulse"></div>
+              <div className="absolute inset-2 bg-gradient-to-tr from-orange-dark via-orange to-orange-light rounded-xl"></div>
+              <div className="absolute inset-3 bg-darkgray rounded-xl flex items-center justify-center">
+                <Avatar className="w-[92%] h-[92%] rounded-xl relative">
+                  <AvatarImage 
+                    src={profileImage}
+                    alt="James Williams"
+                    className="object-cover hover:scale-105 transition-transform duration-500"
+                  />
+                  <AvatarFallback className="rounded-xl bg-darkgray text-4xl text-orange">JW</AvatarFallback>
+                  {/* Fade out effect at bottom */}
+                  <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-black/90 via-black/50 to-transparent pointer-events-none"></div>
+                </Avatar>
+              </div>
+              
+              {/* Tech decorations */}
+              <div className="absolute -bottom-6 -right-6 w-24 h-24 border-2 border-dashed border-orange/50 rounded-xl animate-[spin_15s_linear_infinite]"></div>
+              <div className="absolute -top-6 -left-6 w-16 h-16 border border-orange/30 rounded-xl animate-[spin_12s_linear_infinite_reverse]"></div>
             </div>
           </div>
         </div>
