@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 const slides = [
   { type: 'video', src: '/videos/tractor_autosteer.mp4' },
-  { type: 'image', src: '/lovable-uploads/ef99b3a9-a1a1-4b39-bbe5-edc81b95400a.png' },
+  { type: 'video', src: '/videos/robot_vision.mov' },
   { type: 'image', src: '/lovable-uploads/e59dbdb0-fec3-46be-8478-160313256af3.png' }
 ];
 
