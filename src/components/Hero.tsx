@@ -94,10 +94,10 @@ const Hero = () => {
           </div>
           
           <div className="lg:col-span-5 flex justify-center">
-            <div className="relative w-full max-w-sm aspect-square">
-              <div className="absolute inset-0 bg-gradient-to-tr from-orange-dark via-orange to-orange-light rounded-xl blur-xl opacity-25 animate-pulse"></div>
-              <div className="absolute inset-2 bg-gradient-to-tr from-orange-dark via-orange to-orange-light rounded-xl"></div>
-              <div className="absolute inset-3 bg-darkgray rounded-xl flex items-center justify-center group">
+            <div className="relative w-full max-w-sm aspect-square group">
+              <div className="absolute inset-0 bg-gradient-to-tr from-orange-dark via-orange to-orange-light rounded-xl blur-xl opacity-25 animate-pulse transition-opacity duration-500 group-hover:opacity-0"></div>
+              <div className="absolute inset-2 bg-gradient-to-tr from-orange-dark via-orange to-orange-light rounded-xl transition-opacity duration-500 group-hover:opacity-0"></div>
+              <div className="absolute inset-3 bg-darkgray rounded-xl flex items-center justify-center transition-opacity duration-500 group-hover:opacity-0">
                 <Avatar className="w-[92%] h-[92%] rounded-xl relative transition-opacity duration-500 group-hover:opacity-10">
                   <AvatarImage 
                     src={profileImage}
@@ -111,8 +111,8 @@ const Hero = () => {
               </div>
               
               {/* Tech decorations */}
-              <div className="absolute -bottom-6 -right-6 w-24 h-24 border-2 border-dashed border-orange/50 rounded-xl animate-[spin_15s_linear_infinite]"></div>
-              <div className="absolute -top-6 -left-6 w-16 h-16 border border-orange/30 rounded-xl animate-[spin_12s_linear_infinite_reverse]"></div>
+              <div className="absolute -bottom-6 -right-6 w-24 h-24 border-2 border-dashed border-orange/50 rounded-xl animate-[spin_15s_linear_infinite] transition-opacity duration-500 group-hover:opacity-0"></div>
+              <div className="absolute -top-6 -left-6 w-16 h-16 border border-orange/30 rounded-xl animate-[spin_12s_linear_infinite_reverse] transition-opacity duration-500 group-hover:opacity-0"></div>
             </div>
           </div>
         </div>
